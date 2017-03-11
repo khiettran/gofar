@@ -1,0 +1,253 @@
+<ng-include src="'/Views/shared/breadcrumb.html'"></ng-include>
+<section class="product-detail" id="product-detail">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="product-detail__info">
+                    <div class="product-title">
+                        <h2>{{tour.Title}}</h2>
+                    </div>
+                    <div class="product-address">
+                        <span>9579 Wishing Mount, Wynot, ND,  US. | +1-888-8765-1234</span>
+                    </div>
+                    <div class="product-email">
+                        <i class="fa fa-envelope"></i>
+                        <a href="#">Gửi emai để biết thêm chi tiết</a>
+                    </div>
+
+                    <div class="trips">
+                        <div class="item">
+                            <h6>Tổng số điểm tham quan</h6>
+                            <p><i class="awe-icon awe-icon-attraction"></i>78</p>
+                        </div>
+                        <div class="item">
+                            <h6>Thời gian</h6>
+                            <p><i class="fa fa-clock-o"></i>{{tour.TotalOfDate}} ngày <span ng-if="tour.TotalOfDate - 1 > 0">{{tour.TotalOfDate - 1}} đêm</span></p>
+                        </div>
+                        <div class="item">
+                            <h6>Loại</h6>
+                            <p ng-bind="tour.TotalOfDate > 1 ? 'Dài ngày' : 'Ngắn ngày'"></p>
+                        </div>                        
+                    </div>
+
+                    <table class="ticket-price">
+                        <thead>
+                            <tr>
+                                <th class="ticket-price"><p>Giá vé :</p></th>
+                                <th class="adult"><span>Người trưởng thành</span></th>
+                                <th class="kid"><span>Trẻ em</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="ticket-price">
+                                    <em>Ưu đãi cho 10 người đăng ký đầu tiên.</em>
+                                </td>
+                                <td class="adult">
+                                    <ins>
+                                        <span class="amount">{{tour.PriceAdult| number}} vnđ</span>
+                                    </ins>
+                                    <del>
+                                        <span class="amount">{{tour.PriceAdult | number}} vnđ</span>
+                                    </del>
+                                </td>
+                                <td class="kid">
+                                    <ins>
+                                        {{tour.PriceChild | number}} vnđ
+                                    </ins>
+                                    <del>
+                                       {{tour.PriceChild | number}} vnđ
+                                    </del>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div higgidy-carousel='images' timeout="10000">
+                    <ul higgidy-carousel-images>
+                        <li ng-repeat="image in images">
+                            <a href="{{image.link}}">
+                                <img ng-src="{{image.src}}" alt="{{img.alt}}" />
+                            </a>
+                        </li>
+                    </ul>
+                    <nav class="links">
+                        <ul>
+                            <li ng-repeat="image in images">
+                                <a href="" ng-click="show($index)" ng-class="{selected: carousel.current == $index}">
+                                    {{$index}}
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>                           
+            </div>
+        </div>
+        <div class="row">
+            <div class="g-plus" data-action="share" data-annotation="none" data-height="24"></div>
+            <a facebook class="facebookShare" data-url='{{linkShared}}' data-shares='shares'></a>
+            <a twitter  data-lang="en" data-count='horizontal' data-url='{{linkShared}}' data-via='notsosleepy' data-size="medium" data-text='' ></a>
+            <a linkedin class="linkedinShare" data-url='{{linkShared}}' data-title='Chia sẻ' data-summary="" data-shares='linkedinshares'></a>
+            <div class="col-md-2" tumblr-text data-url='{{linkShared}}' data-name='Chia sẻ' data-title='test' data-buttontext='Chia sẻ' data-styling="display:inline-block; text-indent:-9999px; overflow:hidden; width:129px; height:20px; background:url('http://platform.tumblr.com/v1/share_3.png') top left no-repeat transparent;" data-description=''></div>
+        </div>
+        <div class="row">
+            <div class="col-md-9">
+                <md-content class="product-tabs">
+                    <md-tabs md-dynamic-height="" md-border-bottom="">
+                        <md-tab>
+                            <md-tab-label>Hành trình</md-tab-label>
+                            <md-tab-body class="md-padding product-tabs__content">                                
+                                <uib-accordion>
+                                    <div uib-accordion-group class="panel-default" ng-init="isOpen = $index == 0" is-open="isOpen" ng-repeat="item in tour.Cruises">             
+                                        <uib-accordion-heading>
+                                            Ngày {{item.OrderOfDate}} : {{item.Title}} <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+                                        </uib-accordion-heading>
+                                        <div>            
+                                            <div class="tour-map-wrapper">
+                                                <div class="tour-map" map-lazy-load="https://maps.google.com/maps/api/js"
+                                                         map-lazy-load-params="{{googleMapsUrl}}">                                                   
+                                                        <ng-map center="41,-87" zoom="3" style="height:250px"></ng-map>                                                    
+                                                </div>
+                                                <div class="trips">
+                                                    <div class="item">
+                                                        <h6>Hành trình {{item.CruiseDetails.length}} địa điểm</h6>
+                                                        <p><i class="awe-icon awe-icon-attraction"></i>26</p>
+                                                    </div>
+                                                    <div class="item">
+                                                        <h6>Tổng thời gian</h6>
+                                                        <p><i class="fa fa-clock-o"></i> 2 hours</p>
+                                                    </div>
+                                                </div>
+                                                <br>
+                                                <h6>Khởi hành</h6>
+                                                <p>Từ: 08:00 am - 6:00 pm</p>                                               
+                                            </div>
+                                            <br>
+                                            <span ng-bind-html="item.Description"></span>
+                                        </div>
+                                    </div>                                    
+                                </uib-accordion>
+                            </md-tab-body>
+                        </md-tab>
+                        <md-tab>
+                            <md-tab-label>Những điều cần biết</md-tab-label>
+                            <md-tab-body class="md-padding product-tabs__content">                                
+                                <span ng-bind-html="tour.TourNote"></span>
+                            </md-tab-body>
+                        </md-tab>
+                        <md-tab>
+                            <md-tab-label>Bình luận &amp; đánh giá</md-tab-label>
+                            <md-tab-body class="md-padding product-tabs__content">
+                                <div ng-controller="TourRatingModificationController" id="reviews">
+                                <section style="min-height:500px" flex>
+                                    <div class="rating-info">
+                                        <div class="average-rating-review good" style="min-width: 250px">
+                                            <span class="count">{{myRat.AverageTotal}}</span>
+                                            <em>Đánh giá </em>
+                                            <span>{{myRat.RateName}}</span>
+                                        </div>
+                                        <ul ng-show="isShowMyRat" class="rating-review">
+                                            <li>
+                                                <em>Trang thiết bị</em>
+                                                <span>{{myRat.Facility}}</span>
+                                            </li>
+                                            <li>
+                                                <em>Con người</em>
+                                                <span>{{myRat.Human}}</span>
+                                            </li>
+                                            <li>
+                                                <em>Dịch vụ</em>
+                                                <span>{{myRat.Service}}</span>
+                                            </li>
+                                            <li>
+                                                <em>Hấp dẫn</em>
+                                                <span>{{myRat.Interesting}}</span>
+                                            </li>
+                                        </ul>
+                                        <div style="float:right">
+                                            <button type="button" class="btn btn-default" 
+                                                ng-click="toggleComment()"
+                                                ng-hide="isOpenCommentContent()">Bình luận</button>
+                                            <md-button ng-click="toggleRating(myRat)"
+                                                    ng-hide="isOpenRatingContent()"
+                                                    class="md-primary">
+                                                    Đánh giá
+                                            </md-button>
+                                        </div>
+                                        <div ng-include="'Views/tour/tourCommentModal.html'"></div>
+                                        <div ng-include="'Views/tour/tourRatingModal.html'"></div>
+                                    </div>
+                                    <div ng-include="'Views/tour/tourCommentFilter.html'"></div>
+                                    </section>
+                                </div>
+                            </md-tab-body>
+                        </md-tab>
+                    </md-tabs>
+                </md-content>                
+            </div>
+            <div class="col-md-3">
+                <div class="detail-sidebar">
+                    <div class="call-to-book">
+                        <i class="awe-icon awe-icon-phone"></i>
+                        <em>Call to book</em>
+                        <span>+1-888-8765-1234</span>
+                    </div>
+                    <div class="booking-info">
+                        <h3>Booking info</h3>
+                        <div class="form-select-date">
+                            <div class="form-elements">
+                                <label>Select Travel Date</label>
+                                <div class="form-item">
+                                    <i class="awe-icon awe-icon-calendar"></i>
+                                    <input type="text" class="awe-calendar" value="Date">
+                                </div>
+                                <span>* Vouchers valid for 12 months after purchase.</span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-elements form-adult">
+                                <label>Adult</label>
+                                <div class="form-item">
+                                    <select class="awe-select">
+                                        <option>0</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                                </div>
+                                <span>12 yo and above</span>
+                            </div>
+                            <div class="form-elements form-kids">
+                                <label>Kids</label>
+                                <div class="form-item">
+                                    <select class="awe-select">
+                                        <option>0</option>
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                    </select>
+                                </div>
+                                <span>11 and under</span>
+                            </div>
+                        </div>
+                        <div class="price">
+                            <em>Total for this booking</em>
+                            <span class="amount">$5,923</span>
+                        </div>
+                        <div class="form-submit">
+                            <div class="add-to-cart">
+                                <button type="submit">
+                                    <i class="awe-icon awe-icon-cart"></i>Add this to Cart
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

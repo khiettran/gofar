@@ -1,0 +1,28 @@
+﻿<section class="checkout-section-demo">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="checkout-page__top">
+                    <div class="title">
+                        <h1 class="text-uppercase">Thông tin tài khoản</h1>
+                    </div>
+                    <span class="phone">Điện thoại hỗ trợ: +1-888-8765-1234</span>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="checkout-page__sidebar">
+                    <ul>
+                        <li ng-active-link="current" ui-sref="app.personal.account"><a ui-sref="app.personal.account">Thông tin đăng nhập</a></li>
+                        <li ng-active-link="current" ui-sref="app.personal.info"><a ui-sref="app.personal.info">Thông tin cá nhân</a></li>                        
+                        <li ng-active-link="current" ui-sref="app.personal.history"><a ui-sref="app.personal.history">Lịch sử giao dịch</a></li>                        
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="checkout-page__content" ui-view>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

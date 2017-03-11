@@ -1,0 +1,47 @@
+﻿.cursor-pointer{cursor: pointer}
+.margin-t-15{margin-top: 15px}
+.text-sm{font-size:12px;}
+.form-elements i.fa-control {
+    position: absolute;
+    width: 36px;
+    height: 34px;
+    line-height: 34px;
+    text-align: right;
+    top: 1px;
+    right: 1px;
+    padding-right: 12px;
+    font-size: 16px;
+    color: #666;
+    pointer-events: none;
+}
+.alertify-logs{z-index:10000000;}
+/* Home > Search Panel */
+.awe-search-tabs md-content{border-radius: 5px 5px 0 0}
+.awe-search-tabs md-tabs{border-radius: 5px 5px 0 0}
+.awe-search-tabs md-tabs-wrapper{border-radius: 5px 5px 0 0; border-bottom: 0px solid !important; background-color: dodgerblue;}
+.awe-search-tabs md-tab-content{background-color: white}
+.awe-search-tabs md-tabs-canvas{margin: 0 35px;}
+.awe-search-tabs md-pagination-wrapper { width:auto !important; }
+.awe-search-tabs md-tabs-canvas md-tab-item {vertical-align: middle; border-left: 1px solid rgba(255, 255, 255, 0.15);} 
+.awe-search-tabs md-tabs-canvas md-tab-item:last-child{border-right: 1px solid rgba(255, 255, 255, 0.15);}
+.awe-search-tabs md-tabs-canvas md-tab-item.md-active{background-color:white; }
+.awe-search-tabs md-tabs-canvas md-tab-item i{color:white; }
+.awe-search-tabs md-tabs-canvas md-tab-item.md-active i{color: dodgerblue}
+.awe-search-tabs md-tabs-canvas md-ink-bar{display: none}
+.awe-search-tabs md-tab-content {padding:32px}
+
+.amount .money-type{font-size:12px;}
+/* Datetime Picker */
+.dropdown-menu .datepicker button.btn{border: 0;}
+.dropdown-menu .datepicker button.btn span { margin-top: 0}
+.dropdown-menu .datepicker button.btn.active{box-shadow: none; }
+.dropdown-menu .datepicker button.btn.active span{color:white;}
+
+/* Tour > Detail */
+#product-detail md-content{background-color:transparent !important;}
+#product-detail .product-tabs md-tabs-content-wrapper{margin-top: 22px;}
+.fb_iframe_widget>span{ vertical-align: middle !important;}
+
+/* Payment */
+.customer-content .content-title i{color: #0091EA; padding-right: 10px}
+.customer-content #payment ul.payment_methods{padding-left: 0}

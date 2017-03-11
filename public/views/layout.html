@@ -1,0 +1,17 @@
+  <!-- PAGE WRAP -->
+<div id="page-wrap">    
+    <!-- PRELOADER -->
+    <div class="preloader" ng-show="isContentLoading"></div>
+    <!-- END / PRELOADER -->
+    <!-- HEADER PAGE -->
+    <ng-include src="'/Views/shared/header.html'"></ng-include>
+    <!-- END / HEADER PAGE -->
+    
+    <ui-view></ui-view>
+
+    <!-- FOOTER PAGE -->
+    <ng-include src="'/Views/shared/footer.html'"></ng-include>
+    <!-- END / FOOTER PAGE -->
+
+</div>
+<!-- END / PAGE WRAP -->

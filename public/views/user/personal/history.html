@@ -1,0 +1,108 @@
+﻿<div class="yourcart-content">
+    <div class="content-title">
+        <h2><i class="awe-icon awe-icon-cart"></i>Thông tin khách hàng</h2>
+    </div>
+    <div class="cart-content">
+        <div>                     
+            <div class="row">
+                <div class="form-group col-md-5">
+                    <div class="form-elements">
+                        <label>Họ tên</label>
+                        <div class="form-item">                            
+                            <input type="text" placeholder="Nguyễn văn A" class="form-control" ng-model="customer.fullName">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-5">
+                    <div class="form-elements">
+                        <label>Ngày sinh</label>
+                        <div class="form-item" style="position:relative">                            
+                            <input type="text" class="form-control input-sm"
+                                   ng-model="customer.birthDay"
+                                   data-date-format="dd MMM yyyy"
+                                   data-autoclose="true"
+                                   data-icon-left="fa fa-chevron-left"
+                                   data-icon-right="fa fa-chevron-right"
+                                   name="date"
+                                   bs-datepicker
+                                   style="padding-right:40px;">
+                            <i class="fa fa-calendar fa-control"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-2">
+                    <div class="form-elements">
+                        <label>&nbsp;</label>
+                        <div class="form-item">
+                            <button class="btn btn-success" ng-click="addCustomer()">Thêm</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <b>Danh sách hành khách</b>
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th class="product-remove"></th>
+                    <th class="product-no text-center">STT</th>
+                    <th class="product-name">Tên khách hàng</th>
+                    <th class="product-price">Ngày sinh</th>
+                    <th class="product-quantity">Loại vé</th>
+                    <th class="product-subtotal">$</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in bookingModel.customers">
+                    <td class="product-remove">
+                        <a href="#"><i class="awe-icon awe-icon-close-o"></i></a>
+                    </td>
+                    <td class="product-no text-center">
+                        <span>{{$index + 1}}</span>
+                    </td>
+                    <td class="product-name">
+                        <span>{{item.fullName}}</span>
+                    </td>
+                    <td class="product-price">
+                        <span class="amount" ng-bind="item.birthDay | date:'dd MMMM yyyy'"></span>
+                    </td>
+                    <td class="product-quantity">
+                        {{item.ticketType}}
+                    </td>
+                    <td class="product-subtotal">
+                        <span class="amount">{{item.price | number}} vnđ</span>
+                    </td>
+                </tr>             
+            </tbody>
+        </table>
+        
+        <div class="cart-footer">
+            <div class="cart-subtotal">
+                <div class="subtotal-title">
+                    <h5>Tổng tiền</h5>
+                </div>
+                <div class="subtotal">
+                    <span class="amount">{{totalPrice | number}} vnđ</span>
+                    <span class="sale"></span>
+                </div>
+                <div class="coupon-code">
+                    <label for="coupon">Mã giảm giá</label>
+                    <div class="form-item">
+                        <input type="text" id="coupon">
+                    </div>
+                    <div class="form-submit">
+                        <button class="btn btn-success">Sử dụng</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="order-total">
+                <h4 class="title">Tổng tiền</h4>
+                <span class="amount">{{totalPrice | number}} vnđ</span>
+            </div>
+            <div class="cart-submit">                
+                <button class="btn btn-success">Tiếp tục thanh toán</button>
+            </div>
+        </div>
+    </div>
+</div>

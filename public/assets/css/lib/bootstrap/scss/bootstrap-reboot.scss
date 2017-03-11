@@ -1,0 +1,10 @@
+// Bootstrap Reboot only
+//
+// Includes only Normalize and our custom Reboot reset.
+
+@import "assets/css/lib/bootstrap/scss/variables";
+@import "assets/css/lib/bootstrap/scss/mixins/hover";
+@import "assets/css/lib/bootstrap/scss/mixins/tab-focus";
+
+@import "assets/css/lib/bootstrap/scss/normalize";
+@import "assets/css/lib/bootstrap/scss/reboot";

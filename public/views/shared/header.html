@@ -1,0 +1,82 @@
+﻿<header id="header-page">
+    <div class="header-page__inner" sticky-menu-init>
+        <div class="container">
+            <!-- LOGO -->
+            <div class="logo" style="font-size:18px;">
+                <a href="index.html">GOFAR</a>
+            </div>
+            <!-- END / LOGO -->
+            <!-- NAVIGATION -->
+            <nav class="navigation awe-navigation" data-responsive="1200">
+                <ul class="menu-list">
+                    <li class="current-menu-parent">
+                        <a href="index.html">Trang chủ</a>
+                    </li>
+                    <li class="menu-item-has-children">
+                        <a ui-sref="app.search({categoryId: 1})">Du lịch Bắc Bộ</a>                        
+                    </li>
+                    <li class="">
+                        <a ui-sref="app.search({categoryId: 2})">Du lịch Nam Bộ</a>                        
+                    </li>
+                    <li class="menu-item-has-children">
+                        <a ui-sref="app.search({categoryId: 3})">Du lịch Trung Bộ</a>
+                    </li>
+                    <li class="menu-item-has-children">
+                        <a ui-sref="app.search({categoryId: 4})">Du lịch đảo</a>                       
+                    </li>
+                    <li class="menu-item-has-children">
+                        <a ui-sref="app.contact">Liên hệ</a>
+                    </li>
+                    <li class="menu-item-has-children">
+                        <a ng-if="memberInfo.isLogedIn" ui-sref="app.personal.account">{{memberInfo.displayName}}</a>
+                        <a ng-if="!memberInfo.isLogedIn">Tài khoản</a>
+                        <ul class="sub-menu" ng-if="!memberInfo.isLogedIn">
+                            <li><a ui-sref="app.signin">Đăng nhập</a></li>                              
+                            <li><a ui-sref="app.signup">Đăng ký</a></li>                            
+                        </ul>
+                        <ul class="sub-menu" ng-if="memberInfo.isLogedIn">
+                            <li style="cursor:pointer"><a ng-click="signOut()">Đăng xuất</a></li>
+                        </ul>
+                    </li>
+                    <li class="menu-item-has-children" ng-if="!memberInfo.isLogedIn">
+                        <a><fb:login-button scope="public_profile,email" ng-click="checkLoginState()"></fb:login-button></a>                                            
+                    </li>                   
+                </ul>
+            </nav>
+            <!-- END / NAVIGATION -->
+            <!-- SEARCH BOX -->
+            <div class="search-box">
+                <span class="searchtoggle"><i class="awe-icon awe-icon-search"></i></span>
+                <form class="form-search">
+                    <div class="form-item">
+                        <input type="text" value="Bạn muốn tìm gì?">
+                    </div>
+                </form>
+            </div>
+            <!-- END / SEARCH BOX -->
+            <!-- TOGGLE MENU RESPONSIVE -->
+            <a class="toggle-menu-responsive">
+                <div class="hamburger">
+                    <span class="item item-1"></span>
+                    <span class="item item-2"></span>
+                    <span class="item item-3"></span>
+                </div>
+            </a>
+            <!-- END / TOGGLE MENU RESPONSIVE -->
+
+        </div>
+    </div>
+
+    <script>    
+
+    // Load the SDK asynchronously
+    (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "/scripts/libs/facebook/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+    
+    </script>
+</header>

@@ -1,0 +1,29 @@
+﻿
+<section class="checkout-section-demo">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="checkout-page__top">
+                    <div class="title">
+                        <h1 class="text-uppercase">Thanh toán</h1>
+                    </div>
+                    <span class="phone">Điện thoại hỗ trợ: +1-888-8765-1234</span>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="checkout-page__sidebar">
+                    <ul>
+                        <li ng-active-link="current" ui-sref="app.payment.cart"><a ui-sref="app.payment.cart">Thông tin khách hàng</a></li>
+                        <li ng-active-link="current" ui-sref="app.payment.customer" ng-if="memberCart.step > paymentSteps.customerInfo"><a ui-sref="app.payment.customer">Thông tin thanh toán</a></li>
+                        <li ng-active-link="current" ui-sref="app.payment.complete" ng-if="memberCart.step > paymentSteps.customerPaymentInfo"><a ui-sref="app.payment.complete">Hoàn tất</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <div class="checkout-page__content" ui-view>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

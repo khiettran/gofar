@@ -1,0 +1,52 @@
+<div layout="column" ng-cloak>
+  
+    <md-sidenav class="md-sidenav-right md-whiteframe-4dp" md-component-id="tour-rating-content">
+      <md-toolbar class="md-theme-light">
+        <h1 class="md-toolbar-tools" style="color:#fff">ĐÁNH GIÁ BÀI VIẾT</h1>
+      </md-toolbar>
+      <md-content layout-padding>
+        <form>
+           <div class="booking-info form-group" style="margin-bottom: 20px; border-color: #fff; padding:0">
+                <div class="form-elements form-adult" style="padding-right: 5px">
+                    <label>Trang thiết bị</label>
+                    <div class="form-item">
+                        <select class="awe-select" ng-model="ratModel.Facility" ng-options="item.Number as item.Name for item in ratValues">
+                        </select>
+                    </div>
+                    <span ng-bind="'Mức độ ' + ratModel.Facility"></span>
+                </div>
+                <div class="form-elements form-kids" style="padding-left: 5px">
+                    <label>Con người</label>
+                    <div class="form-item">
+                        <select class="awe-select" ng-model="ratModel.Human" ng-options="item.Number as item.Name for item in ratValues">
+                        </select>
+                    </div>
+                    <span ng-bind="'Mức độ ' + ratModel.Human"></span>
+                </div>
+            </div>
+            <div class="booking-info form-group" style="margin-bottom:0px; border-color: #fff; padding:0">
+                <div class="form-elements form-adult" style="padding-right: 5px">
+                    <label>Dịch vụ</label>
+                    <div class="form-item">
+                        <select class="awe-select" ng-model="ratModel.Service" ng-options="item.Number as item.Name for item in ratValues">
+                        </select>
+                    </div>
+                    <span ng-bind="'Mức độ ' + ratModel.Service"></span>
+                </div>
+                <div class="form-elements form-kids" style="padding-left: 5px">
+                    <label>Hấp dẫn</label>
+                    <div class="form-item">
+                        <select class="awe-select" ng-model="ratModel.Interesting" ng-options="item.Number as item.Name for item in ratValues">
+                        </select>
+                    </div>
+                    <span ng-bind="'Mức độ ' + ratModel.Interesting"></span>
+                </div>
+            </div>
+        </form>
+        <md-button ng-click="sendRating(loadingMyRat)" class="md-primary">
+          Gửi đánh giá
+        </md-button>
+      </md-content>
+    </md-sidenav>
+  
+</div>

@@ -1,0 +1,396 @@
+﻿<!-- HERO SECTION -->
+<section class="hero-section">
+    <div id="slider-revolution" image-slider-init>
+        <ul>
+            <li data-slotamount="7" data-masterspeed="500" data-title="Tour khuyến mãi">
+                <img src="/assets/images/bg/1.jpg" data-bgposition="left center" data-duration="14000" data-bgpositionend="right center" alt="">
+
+                <div class="tp-caption sfb fadeout slider-caption-sub slider-caption-sub-1" data-x="500" data-y="230" data-speed="700" data-start="1500" data-easing="easeOutBack">
+                    Giá phút cuối
+                </div>
+
+                <div class="tp-caption sfb fadeout slider-caption slider-caption-1" data-x="center" data-y="280" data-speed="700" data-easing="easeOutBack" data-start="2000">
+                    Tour đang khuyến mãi
+                </div>
+
+                <a href="#" class="tp-caption sfb fadeout awe-btn awe-btn-style3 awe-btn-slider" data-x="center" data-y="380" data-easing="easeOutBack" data-speed="700" data-start="2200">Đặt ngay</a>
+            </li>
+
+            <li data-slotamount="7" data-masterspeed="500" data-title="Thiết kế chuyên nghiệp">
+                <img src="/assets/images/bg/2.jpg" data-bgposition="left center" data-duration="14000" data-bgpositionend="right center" alt="">
+
+                <div class="tp-caption  sft fadeout slider-caption slider-caption-sub-2" data-x="center" data-y="220" data-speed="700" data-start="1500" data-easing="easeOutBack">
+                    Gofar
+                </div>
+
+                <div class="tp-caption sft fadeout slider-caption-sub slider-caption-sub-3" data-x="center" data-y="280" data-speed="700" data-easing="easeOutBack" data-start="2000">
+                    Thiết kế cho bạn những chuyến đi tuyệt vời.
+                </div>
+
+                <a href="#" class="tp-caption sft fadeout awe-btn awe-btn-style3 awe-btn-slider" data-x="center" data-y="370" data-easing="easeOutBack" data-speed="700" data-start="2200">Đặt ngay</a>
+            </li>
+
+            <li data-slotamount="7" data-masterspeed="500" data-title="Phục vụ tận tình">
+                <img src="/assets/images/bg/3.jpg" data-bgposition="left center" data-duration="14000" data-bgpositionend="right center" alt="">
+
+                <div class="tp-caption lfl fadeout slider-caption slider-caption-sub-2" data-x="center" data-y="220" data-speed="700" data-easing="easeOutBack" data-start="1500">
+                    Gofar
+                </div>
+
+                <div href="#" class="tp-caption lfr fadeout slider-caption-sub slider-caption-sub-3" data-x="center" data-y="280" data-easing="easeOutBack" data-speed="700" data-start="2000">
+                    Đưa bạn đến mọi miền trên lãnh thổ Việt Nam.
+                </div>
+            </li>
+
+        </ul>
+    </div>
+</section>
+<!-- END / HERO SECTION -->
+
+ <!-- SEARCH TABS -->
+<section>
+    <div class="container">     
+        <div class="awe-search-tabs">
+            <md-content>
+                <md-tabs md-dynamic-height="" md-border-bottom="">
+                    <md-tab>                        
+                        <md-tab-label><i class="awe-icon awe-icon-briefcase"></i></md-tab-label>
+                        <md-tab-body class="md-padding">                                                                                       
+                                <h2>Chung tối sẽ giúp bạn tìm những chuyến đi tốt nhất.</h2>
+                                <form>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div class="form-elements">
+                                                <label>Du lịch vùng</label>
+                                                <div class="form-item">
+                                                    <select class="awe-select" ng-model="filter.categoryId" ng-options="item.categoryId as item.name for item in tourCategories"></select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="form-elements">
+                                                <label>Từ ngày</label>
+                                                <div class="form-item">
+                                                    <!--<input type="text" class="form-control input-sm"
+                                                           ng-model="filter.from"
+                                                           data-date-format="dd MMM yyyy"
+                                                           data-autoclose="true"
+                                                           data-max-date="{{filter.to}}"
+                                                           data-icon-left="fa fa-chevron-left"
+                                                           data-icon-right="fa fa-chevron-right"
+                                                           name="date"
+                                                           bs-datepicker>-->
+                                                    <input type="text" class="form-control" 
+                                                           uib-datepicker-popup 
+                                                           ng-model="filter.from" 
+                                                           is-open="opened" 
+                                                           datepicker-options="dateOptions" 
+                                                           ng-required="true" 
+                                                           close-text="Close" 
+                                                           ng-click="open($event)"
+                                                           show-button-bar="false"
+                                                           show-weeks="false"/>
+                                                    <i class="fa fa-calendar fa-control" ng-click="open()"></i>
+                                                </div>
+                                            </div>                                           
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="form-elements">
+                                                <label>Đến ngày</label>
+                                                <div class="form-item">
+                                                    <!--<input type="text" class="form-control input-sm"
+                                                           ng-model="filter.to"
+                                                           data-date-format="dd MMM yyyy"
+                                                           data-autoclose="true"
+                                                           data-min-date="{{filter.from}}"
+                                                           data-icon-left="fa fa-chevron-left"
+                                                           data-icon-right="fa fa-chevron-right"
+                                                           name="date"
+                                                           bs-datepicker>-->
+                                                    <input type="text" class="form-control"
+                                                           uib-datepicker-popup
+                                                           ng-model="filter.to"
+                                                           is-open="opened"
+                                                           datepicker-options="dateOptions"
+                                                           ng-required="true"
+                                                           close-text="Close"
+                                                           ng-click="open($event)"
+                                                           show-button-bar="false"
+                                                           show-weeks="false" />
+                                                    <i class="fa fa-calendar fa-control" ng-click="open()"></i>
+                                                </div>
+                                            </div>                                            
+                                        </div>
+                                        <div class="form-actions">
+                                            <input type="submit" value="Tìm kiếm" ng-click="filterTour()">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group">
+                                            <div class="form-elements">
+                                                <label>Từ khóa</label>
+                                                <div class="form-item">
+                                                    <i class="awe-icon awe-icon-marker-1"></i>
+                                                    <input type="text" value="Ho Chi Minh, Hanoi, Vietnam" ng-model="filter.keyword">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="form-elements">
+                                                <label>Giá từ</label>
+                                                <div class="form-item">
+                                                    <i class="fa fa-money fa-control" ng-model="filter.priceFrom"></i>
+                                                    <input type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="form-elements">
+                                                <label>Giá đến</label>
+                                                <div class="form-item">
+                                                    <i class="fa fa-money fa-control" ng-model="filter.priceTo"></i>
+                                                    <input type="text">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>                            
+                        </md-tab-body>
+                    </md-tab>
+                    <md-tab>
+                        <md-tab-label><i class="awe-icon awe-icon-hotel"></i></md-tab-label> 
+                        <md-tab-body class="md-padding">
+                            <div class="tour-map" map-lazy-load="https://maps.google.com/maps/api/js"
+                                 map-lazy-load-params="{{googleMapsUrl}}" style="width: 100%; height:350px">
+                                <ng-map center="41,-87" zoom="3" style="width: 100%; height:350px"></ng-map>
+                            </div>
+                        </md-tab-body>
+                    </md-tab>
+                    <md-tab>
+                        <md-tab-label><i class="awe-icon awe-icon-plane"></i></md-tab-label>     
+                        <md-tab-body class="md-padding">
+                            <div class="tour-map" map-lazy-load="https://maps.google.com/maps/api/js"
+                                 map-lazy-load-params="{{googleMapsUrl}}" style="width: 100%; height:350px">
+                                <ng-map center="41,-87" zoom="3" style="width: 100%; height:350px"></ng-map>
+                            </div>
+                        </md-tab-body>                                        
+                    </md-tab>
+                    <md-tab>
+                        <md-tab-label><i class="awe-icon awe-icon-train"></i></md-tab-label>   
+                        <md-tab-body class="md-padding">
+                            <div class="tour-map" map-lazy-load="https://maps.google.com/maps/api/js"
+                                 map-lazy-load-params="{{googleMapsUrl}}" style="width: 100%; height:350px">
+                                <ng-map center="41,-87" zoom="3" style="width: 100%; height:350px"></ng-map>
+                            </div>
+                        </md-tab-body>                    
+                    </md-tab>
+                    <md-tab>
+                        <md-tab-label><i class="awe-icon awe-icon-car"></i></md-tab-label> 
+                        <md-tab-body class="md-padding">
+                            <div class="tour-map" map-lazy-load="https://maps.google.com/maps/api/js"
+                                 map-lazy-load-params="{{googleMapsUrl}}" style="width: 100%; height:350px">
+                                <ng-map center="41,-87" zoom="3" style="width: 100%; height:350px"></ng-map>
+                            </div>
+                        </md-tab-body>                       
+                    </md-tab>
+                    <md-tab>
+                        <md-tab-label><i class="awe-icon awe-icon-bus"></i></md-tab-label>    
+                        <md-tab-body class="md-padding">
+                            <div class="tour-map" map-lazy-load="https://maps.google.com/maps/api/js"
+                                 map-lazy-load-params="{{googleMapsUrl}}" style="width: 100%; height:350px">
+                                <ng-map center="41,-87" zoom="3" style="width: 100%; height:350px"></ng-map>
+                            </div>
+                        </md-tab-body>                    
+                    </md-tab>
+                </md-tabs>
+            </md-content>           
+        </div>
+    </div>
+</section>
+<!-- END / SEARCH TABS -->
+
+<!-- MASONRY -->
+<section class="masonry-section-demo" ng-hide="isHideSearchResult">
+    <div class="container">
+        <div class="destination-grid-content">
+            <div class="section-title">
+                <h3><a href="destinations-grid.html">{{paging.totalItems}} hành trình</a> được tìm thấy</h3>
+            </div>
+            <div class="row awe-masonry">
+                <div masonry reload-on-show >
+                    <div class="masonry-brick awe-masonry__item" ng-repeat="item in tours">
+                        <a ng-click="addRecentViewedTour(item)">
+                            <div class="image-wrap image-cover">
+                                <img ng-src="{{item.FeatureImageUrl}}" alt="">
+                            </div>
+                        </a>
+                        <div class="item-title">
+                            <h2><a href="#">{{item.Title}}</a></h2>
+                            <div class="item-cat">
+                                <ul>
+                                    <li><a href="#">Italy</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="item-available">
+                            <span class="count">{{item.NumberBooked}}</span>
+                            {{item.Description}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="more-destination" ng-if="$scope.paging.currentPage < $scope.paging.totalPage" ng-click="loadMore('nxt')">
+                <a href="#">Tải thêm kết quả</a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- END / MASONRY -->
+
+<section class="sale-flights-section-demo">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <md-content>
+                    <md-tabs md-dynamic-height="" md-border-bottom="">
+                        <md-tab>
+                            <md-tab-label>Nhiều người đi nhất</md-tab-label>
+                            <md-tab-body class="md-padding">
+                                <div id="sale-flights-tabs-1" class="tab-pane fade in active">
+                                    <!-- ITEM -->
+                                    <div class="trip-item" ng-repeat="item in hotTours">
+                                        <div class="item-media">
+                                            <div class="image-cover">
+                                                <a ng-click="addRecentViewedTour(item)" class="cursor-pointer"><img src="/assets/images/trip/3.jpg" alt=""></a>
+                                            </div>
+                                            <div class="trip-icon">
+                                                <img src="/assets/images/trip.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="item-body">
+                                            <div class="item-title">
+                                                <h2>
+                                                    <a ng-click="addRecentViewedTour(item)">{{item.Title}}</a>
+                                                </h2>
+                                            </div>
+                                            <div class="item-list">
+                                                <ul>
+                                                    <li>{{item.TotalOfPlace}} địa điểm tham quan</li>
+                                                    <li>{{item.TotalOfDate}} ngày<span ng-if="item.TotalOfDate - 1 > 0">, {{item.TotalOfDate - 1}} đêm</span></li>
+                                                </ul>
+                                            </div>
+                                            <div class="item-footer">
+                                                <div class="item-rate">
+                                                    <span ng-if="item.Rating > 0">{{item.Rating}} tốt</span>
+                                                    <span ng-if="item.Rating == 0" class="text-sm">chưa có đánh giá nào</span>
+                                                </div>
+                                                <div class="item-icon">
+                                                    <i class="awe-icon awe-icon-gym"></i>
+                                                    <i class="awe-icon awe-icon-car"></i>
+                                                    <i class="awe-icon awe-icon-food"></i>
+                                                    <i class="awe-icon awe-icon-level"></i>
+                                                    <i class="awe-icon awe-icon-wifi"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="item-price-more">
+                                            <div class="price">
+                                                Giá vé dành cho bạn
+                                                <ins>
+                                                    <span class="amount">
+                                                        <span ng-bind="item.PromotionPrice < item.PriceAdult ? item.PromotionPrice : item.PriceAdult | number"></span> 
+                                                        <span class="money-type">vnđ</span>
+                                                    </span>
+                                                </ins>
+                                                <del ng-if="item.PromotionPrice < item.PriceAdult">
+                                                    <span class="amount">
+                                                        <span ng-bind="item.PriceAdult | number"></span>
+                                                        <span class="money-type">vnđ</span>
+                                                    </span>
+                                                </del>
+                                            </div>
+                                            <a ng-click="bookNowClick(item)" class="awe-btn">Đặt ngay</a>
+                                        </div>
+                                    </div>
+                                    <!-- END / ITEM -->                                    
+                                </div>
+                            </md-tab-body>
+                        </md-tab>
+                        <md-tab>
+                            <md-tab-label>Các tour xem gần đây</md-tab-label>
+                            <md-tab-body class="md-padding">
+                                <!-- ITEM -->
+                                <div class="trip-item" ng-repeat="item in recentViewedTours">
+                                    <div class="item-media">
+                                        <div class="image-cover">
+                                            <a ng-click="addRecentViewedTour(item)" class="cursor-pointer"><img src="/assets/images/trip/3.jpg" alt=""></a>
+                                        </div>
+                                        <div class="trip-icon">
+                                            <img src="/assets/images/trip.jpg" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="item-body">
+                                        <div class="item-title">
+                                            <h2>
+                                                <a href="#">{{item.Title}}</a>
+                                            </h2>
+                                        </div>
+                                        <div class="item-list">
+                                            <ul>
+                                                <li>{{item.TotalOfPlace}} địa điểm tham quan</li>
+                                                <li>{{item.TotalOfDate}} ngày<span ng-if="item.TotalOfDate - 1 > 0">, {{item.TotalOfDate - 1}} đêm</span></li>
+                                            </ul>
+                                        </div>
+                                        <div class="item-footer">
+                                            <div class="item-rate">
+                                                <span ng-if="item.Rating > 0">{{item.Rating}} tốt</span>
+                                                <span ng-if="item.Rating == 0" class="text-sm">chưa có đánh giá nào</span>
+                                            </div>
+                                            <div class="item-icon">
+                                                <i class="awe-icon awe-icon-gym"></i>
+                                                <i class="awe-icon awe-icon-car"></i>
+                                                <i class="awe-icon awe-icon-food"></i>
+                                                <i class="awe-icon awe-icon-level"></i>
+                                                <i class="awe-icon awe-icon-wifi"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="item-price-more">
+                                        <div class="price">
+                                            Giá vé
+                                            <ins>
+                                                <span class="amount">
+                                                    <span ng-bind="item.PromotionPrice < item.PriceAdult ? item.PromotionPrice : item.PriceAdult | number"></span>
+                                                    <span class="money-type">vnđ</span>
+                                                </span>
+                                            </ins>
+                                            <del ng-if="item.PromotionPrice < item.PriceAdult">
+                                                <span class="amount">
+                                                    <span ng-bind="item.PriceAdult | number"></span>
+                                                    <span class="money-type">vnđ</span>
+                                                </span>
+                                            </del>
+                                        </div>
+                                        <a href="#" class="awe-btn">Đặt ngay</a>
+                                    </div>
+                                </div>
+                                <!-- END / ITEM -->
+                            </md-tab-body>
+                        </md-tab>
+                    </md-tabs>
+                </md-content>
+            </div>
+            <div class="col-md-4">
+                <div class="awe-services">
+                    <h2>Du lịch bất cứ nơi đâu</h2>                   
+                    <div class="video-wrapper embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" src="https://player.vimeo.com/video/50880604"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

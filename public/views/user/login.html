@@ -1,0 +1,27 @@
+﻿<section class="awe-parallax login-page-demo">
+    <div class="awe-overlay"></div>
+    <div class="container">
+        <div class="login-register-page__content">
+            <div class="content-title">
+                <span>Chúng tôi rất vui vì bạn đã trở lại</span>                
+            </div>
+            <form>
+                <div class="form-item">
+                    <label>Email</label>
+                    <input type="email" ng-model="user.Email">
+                </div>
+                <div class="form-item">
+                    <label>Mật khẩu</label>
+                    <input type="password" ng-model="user.Password">
+                </div>
+                <a href="#" class="forgot-password">Quên mật khẩu?</a>
+                <div class="form-actions">
+                    <input type="submit" value="Đăng nhập" ng-click="signIn()">
+                </div>
+            </form>
+            <div class="login-register-link">
+                Bạn chưa có tài khoản? <a ui-sref="app.signup">Nhấn vào đây</a>
+            </div>
+        </div>
+    </div>
+</section>

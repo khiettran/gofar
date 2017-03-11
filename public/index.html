@@ -1,0 +1,136 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"></meta>
+    <!-- TITLE -->
+    <title>Gofar</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"></meta>
+    <meta name="format-detection" content="telephone=no"></meta>
+    <meta name="apple-mobile-web-app-capable" content="yes"></meta>
+
+    <!-- GOOGLE FONT 
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:700,600,400,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>-->
+
+    <!-- CSS LIBRARY -->
+    <link href="/assets/css/lib/bootstrap-3-3-7/css/bootstrap.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/lib/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/lib/awe-booking-font.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/lib/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/lib/magnific-popup.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/lib/jquery-ui.css">
+    <link href="/assets/css/lib/bootstrap-datetimepicker/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <!-- REVOLUTION DEMO -->
+    <link href="/scripts/libs/jquery/theme/revslider/css/settings.css" rel="stylesheet" />
+
+
+    <!-- MAIN STYLE -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+    <link href="/assets/css/style-customize.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/demo.css">
+    
+    <!-- CSS COLOR -->
+    <link id="colorreplace" rel="stylesheet" type="text/css" href="/assets/css/colors/blue.css">
+    
+    <!-- SLIDER -->
+    <link href="/assets/css/lib/angular-slider/higgidy_carousel.min.css" rel="stylesheet" />
+    
+    <!-- Angular Material style sheet -->    
+    <link href="/assets/css/lib/angular-material/angular-material.min.css" rel="stylesheet" />
+    <base href="/">
+    <!-- BOWER FOR SHARING -->
+    <link rel='stylesheet' href="/scripts/libs/bower/angular-socialshare.min.css">
+    <!-- favicon.ico -->
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+</head>
+
+<body ng-app="app" ng-controller="AppCtrl" >       
+    <ui-view></ui-view> 
+
+    <!-- LOAD JQUERY -->
+
+    <script src="/scripts/libs/jquery/jquery/jquery.js"></script>   
+    <script src="/scripts/libs/jquery/tether/dist/js/tether.min.js"></script> 
+    <script src="/scripts/libs/jquery/bootstrap/bootstrap.js"></script>   
+    <script src="/scripts/libs/jquery/theme/theia-sticky-sidebar.js"></script>
+    <script src="/scripts/libs/jquery/bridget/jquery-bridget.js"></script>
+    <script src="/scripts/libs/jquery/ev-emitter/ev-emitter.js"></script>
+    <script src="/scripts/libs/jquery/matches-selector/matches-selector.js"></script>
+    <script src="/scripts/libs/jquery/fizzy-ui-utils-master/utils.js"></script>
+    <script src="/scripts/libs/jquery/get-size-master/get-size.js"></script>
+    <script src="/scripts/libs/jquery/outlayer/item.js"></script>
+    <script src="/scripts/libs/jquery/outlayer/outlayer.js"></script>
+    <script src="/scripts/libs/jquery/masonry/masonry.js"></script>
+    <script src="/scripts/libs/jquery/imagesloaded/imagesloaded.js"></script>
+    <script src="/scripts/libs/jquery/owl-carousel/owl.carousel.min.js"></script>
+    <script src="/scripts/libs/jquery/moment/moment.js"></script>    
+    <!-- Angular -->
+    <script src="/scripts/libs/angular/angular/angular.js"></script>
+    <script src="/scripts/libs/angular/angular-animate/angular-animate.js"></script>
+    <script src="/scripts/libs/angular/angular-aria/angular-aria.min.js"></script>
+    <script src="/scripts/libs/angular/angular-messages/angular-messages.min.js"></script>
+    <script src="/scripts/libs/angular/angular-resource/angular-resource.js"></script>
+    <script src="/scripts/libs/angular/angular-sanitize/angular-sanitize.js"></script>
+    <script src="/scripts/libs/angular/angular-touch/angular-touch.js"></script>
+    <script src="/scripts/libs/angular/angular-translate/angular-translate.min.js"></script>    
+    <script src="/scripts/libs/angular/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="/scripts/libs/angular/angular-strap/dist/angular-strap.js"></script>
+    <script src="/scripts/libs/angular/angular-strap/dist/angular-strap.tpl.js"></script>       
+    <script src="/scripts/libs/angular/angular-masonry/angular-masonry.js"></script>   
+    <script src="/scripts/libs/angular/angular-owl-carousel/angular-owl-carousel.js"></script>     
+    <script src="/scripts/libs/angular/angular-slider/higgidy_carousel.min.js"></script>
+    <!-- router -->
+    <script src="/bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+    <!-- storage -->
+    <script src="/scripts/libs/angular/ngstorage/ngStorage.js"></script>
+    <!-- utils -->
+    <script src="/scripts/libs/angular/angular-ui-utils/ui-utils.js"></script>
+    <!-- lazyload -->
+    <script src="/scripts/libs/angular/oclazyload/dist/ocLazyLoad.js"></script>
+          
+    <!-- Angular Material Library -->
+    <script src="/scripts/libs/angular/angular-material/angular-material.min.js"></script>
+
+    <!-- App -->
+    <script src="/scripts/languages/lang-en.js"></script>
+    <script src="/scripts/languages/lang-vi.js"></script>
+    <script src="/scripts/app/helper.js"></script>
+    <script src="/scripts/app/app.js"></script>
+    <script src="/scripts/app/app.global.js"></script>
+    <script src="/scripts/app/app.directives.js"></script>
+    <script src="/scripts/app/app.commonservice.js"></script>
+    <script src="/scripts/app/messages/app.messages.js"></script>
+    <script src="/scripts/app/config.js"></script>
+    <script src="/scripts/app/config.lazyload.js"></script>
+    <script src="/scripts/app/config.router.js"></script> 
+    <script src="/scripts/libs/angular/angular-ng-alertify/ngAlertify.js"></script>       
+    <script src="/scripts/app/services/access/access.service.js"></script>
+    <script src="/scripts/app/app.ctrl.js"></script>    
+    <script src="/scripts/app/services/http.service.js"></script>
+
+    <script src="/scripts/app/directives/base/ui-jp.js"></script>
+    <script src="/scripts/app/directives/base/ui-nav.js"></script>
+    <script src="/scripts/app/directives/base/ui-fullscreen.js"></script>
+    <script src="/scripts/app/directives/base/ui-scroll-to.js"></script>
+    <script src="/scripts/app/directives/base/ui-toggle-class.js"></script>
+    <script src="/scripts/app/directives/base/ui-include.js"></script>
+
+    <script src="/scripts/app/filters/base/fromnow.js"></script>
+
+    <script src="/scripts/app/services/base/ngstore.js"></script>
+    <script src="/scripts/app/services/base/ui-load.js"></script>
+    <script src="/scripts/app/services/base/palette.js"></script>
+    <!-- endbuild -->
+
+    <!-- REVOLUTION DEMO -->
+    <script type="text/javascript" src="/scripts/libs/jquery/theme/revslider/js/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript" src="/scripts/libs/jquery/theme/revslider/js/jquery.themepunch.tools.min.js"></script>       
+    <!-- BOWER FOR SHARING -->
+    <script src="/scripts/libs/bower/angular-socialshare.min.js"></script>
+    <script src="http://platform.twitter.com/widgets.js"></script>
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+// Toggles
+//
+// Used in conjunction with global variables to enable certain theme features.
+
+@mixin box-shadow($shadow...) {
+  @if $enable-shadows {
+    box-shadow: $shadow;
+  }
+}
+
+@mixin transition($transition...) {
+  @if $enable-transitions {
+    transition: $transition;
+  }
+}
+
+// Utilities
+@import "assets/css/lib/bootstrap/scss/mixins/breakpoints";
+@import "assets/css/lib/bootstrap/scss/mixins/hover";
+@import "assets/css/lib/bootstrap/scss/mixins/image";
+@import "assets/css/lib/bootstrap/scss/mixins/label";
+@import "assets/css/lib/bootstrap/scss/mixins/reset-filter";
+@import "assets/css/lib/bootstrap/scss/mixins/resize";
+@import "assets/css/lib/bootstrap/scss/mixins/screen-reader";
+@import "assets/css/lib/bootstrap/scss/mixins/size";
+@import "assets/css/lib/bootstrap/scss/mixins/tab-focus";
+@import "assets/css/lib/bootstrap/scss/mixins/reset-text";
+@import "assets/css/lib/bootstrap/scss/mixins/text-emphasis";
+@import "assets/css/lib/bootstrap/scss/mixins/text-hide";
+@import "assets/css/lib/bootstrap/scss/mixins/text-truncate";
+
+// // Components
+@import "assets/css/lib/bootstrap/scss/mixins/alert";
+@import "assets/css/lib/bootstrap/scss/mixins/buttons";
+@import "assets/css/lib/bootstrap/scss/mixins/cards";
+@import "assets/css/lib/bootstrap/scss/mixins/pagination";
+@import "assets/css/lib/bootstrap/scss/mixins/lists";
+@import "assets/css/lib/bootstrap/scss/mixins/list-group";
+@import "assets/css/lib/bootstrap/scss/mixins/nav-divider";
+@import "assets/css/lib/bootstrap/scss/mixins/forms";
+@import "assets/css/lib/bootstrap/scss/mixins/progress";
+@import "assets/css/lib/bootstrap/scss/mixins/table-row";
+
+// // Skins
+@import "assets/css/lib/bootstrap/scss/mixins/background-variant";
+@import "assets/css/lib/bootstrap/scss/mixins/border-radius";
+@import "assets/css/lib/bootstrap/scss/mixins/gradients";
+
+// // Layout
+@import "assets/css/lib/bootstrap/scss/mixins/clearfix";
+@import "assets/css/lib/bootstrap/scss/mixins/center-block";
+// @import "mixins/navbar-align";
+@import "assets/css/lib/bootstrap/scss/mixins/grid-framework";
+@import "assets/css/lib/bootstrap/scss/mixins/grid";
+@import "assets/css/lib/bootstrap/scss/mixins/pulls";

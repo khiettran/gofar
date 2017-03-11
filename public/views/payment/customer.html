@@ -1,0 +1,92 @@
+﻿<div class="customer-content">   
+    <div class="content-title">
+        <h2><i class="fa fa-credit-card"></i>Thông tin người thanh toán</h2>
+    </div>   
+    <div class="woocommerce-billing-fields">        
+        <div class="row">
+            <div class="form-group col-md-4">
+                <div class="form-elements">
+                    <label>Họ & tên</label>
+                    <div class="form-item">
+                        <input type="text" placeholder="Nguyễn Văn Ó" class="form-control" ng-model="memberCart.PayerName">
+                    </div>
+                </div>
+            </div>            
+            <div class="form-group col-md-4">
+                <div class="form-elements">
+                    <label>Email</label>
+                    <div class="form-item">
+                        <input type="text" placeholder="Email" class="form-control" ng-model="memberCart.PayerEmail">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                <div class="form-elements">
+                    <label>Số điện thoại</label>
+                    <div class="form-item">
+                        <input type="text" placeholder="Số điện thoại" class="form-control" ng-model="memberCart.PayerPhone">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">            
+            <div class="form-group col-md-6" ng-if="memberCart.IsCreateAccount">
+                <div class="form-elements">
+                    <label>Mật khẩu</label>
+                    <div class="form-item">
+                        <input type="password" placeholder="Mật khẩu" class="form-control" ng-model="memberCart.PayerPassword">
+                    </div>
+                </div>
+            </div> 
+            <div class="form-group col-md-6" ng-if="memberCart.IsCreateAccount">
+                <div class="form-elements">
+                    <label>Nhập lại mật khẩu</label>
+                    <div class="form-item">
+                        <input type="password" placeholder="Nhập lại mật khẩu" class="form-control" ng-model="memberCart.PayerRePassword">
+                    </div>
+                </div>
+            </div>           
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4">
+                <div class="form-elements">
+                    <input id="createaccount" type="checkbox" ng-init="memberCart.IsCreateAccount = false" ng-model="memberCart.IsCreateAccount"> <label for="createaccount">Bạn có muốn tạo tài khoản?</label>                    
+                </div>                
+            </div>
+        </div>
+    </div>
+    <div id="payment">
+        <h3>Phương thức thanh toán</h3>
+        <ul class="payment_methods methods" ng-init="paymentMenthod=0">
+            <li class="payment_method_bacs" disbaled>
+                <input id="payment_method_bacs" type="radio" name="payment_method" value="1" disbaled ng-model="paymentMenthod">
+                <label for="payment_method_bacs">Thanh toán tại quầy </label>
+                <div class="payment_box payment_method_bacs">
+                    <p>Đến quầy các đại lý của chúng tôi và thực hiện thanh toán hóa đơn sau đó đơn đặt hàng sẽ tự động chuyển trạng thái thành kích hoạt.</p>
+                </div>
+            </li>
+            <li class="payment_method_cheque" disbaled>
+                <input id="payment_method_cheque" type="radio" name="payment_method" value="2" disbaled ng-model="paymentMenthod">
+                <label for="payment_method_cheque">Chuyển khoản ngân hàng </label>
+                <div class="payment_box payment_method_cheque">
+                    <p>Thực hiện chuyển khoản ngân hàng sau đó lấy mã giao dịch để kích hoạt đơn đặt hàng.</p>
+                </div>
+            </li>
+            <li class="payment_method_paypal">
+                <input id="payment_method_paypal" type="radio" name="payment_method" value="3" ng-model="paymentMenthod">
+                <label for="payment_method_paypal" >
+                    PayPal
+                    <img src="/assets/images/paypal.png" alt="">
+                    <a href="#" class="about_paypal">Bạn chưa biết Paypal là gì?</a>
+                </label>
+                <div class="payment_box payment_method_paypal">
+                    <p>Thanh toán thông qua paypal, bạn có thể sử dụng paypal để thanh toán thông qua thẻ tín dụng mà không cần phải đến ngân hàng hoặc các đại lý của chúng tôi.</p>
+                </div>
+            </li>
+        </ul>
+        <div class="form-row place-order">
+            <input type="submit" class="button alt" id="place_order" value="Thanh toán" ng-click="doPurchase()">
+        </div>
+    </div>
+
+</div>

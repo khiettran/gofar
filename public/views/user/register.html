@@ -1,0 +1,31 @@
+﻿<section class="awe-parallax register-page-demo">
+    <div class="awe-overlay"></div>
+    <div class="container">
+        <div class="login-register-page__content">
+            <div class="content-title">                
+                <h3 style="color:white; font-size:40px">Xách balo lên và đi!</h3>
+            </div>
+            <form>
+                <div class="form-item">
+                    <label>Email</label>
+                    <input type="email" ng-model="user.Email">
+                </div>
+                <div class="form-item">
+                    <label>Mật khẩu</label>
+                    <input type="password" ng-model="user.Password">
+                </div>
+                <div class="form-item">
+                    <label>Nhập lại mật khẩu</label>
+                    <input type="password" ng-model="user.RePassword">
+                </div>
+                <a href="#" class="terms-conditions">Bằng cách đăng ký, bạn đã chấp nhận điều khoản &amp; điều kiện sử dụng</a>
+                <div class="form-actions">
+                    <input type="submit" value="Đăng Ký" ng-click="signUp()">
+                </div>
+            </form>
+            <div class="login-register-link">
+                Bạn đã có tài khoản? <a ui-sref="app.signin">ĐĂNG NHẬP ở đây</a>
+            </div>
+        </div>
+    </div>
+</section>

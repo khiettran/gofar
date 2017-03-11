@@ -1,0 +1,22 @@
+<div id="comments">
+    <ol class="commentlist">
+        <li ng-repeat="item in tourComments">
+            <div class="comment-box">
+                <div class="avatar">
+                    <img ng-src="{{item.AvatarUrl}}" alt="">
+                </div>
+                <div class="comment-body">
+                    <p class="meta">
+                        <strong ng-bind="item.FullName"></strong>
+                        <span class="time" ng-bind="item.CreatedAt | date:'dd/MM/yyyy'"></span>    
+                        <span class="time">Ngày: </span>
+                    </p>
+                    <div class="description">
+                        <p ng-bind="item.Comment"></p>
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ol>
+</div>
+<div ng-include="'Views/shared/paging.html'"></div>

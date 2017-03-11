@@ -1,0 +1,68 @@
+﻿<div class="complete-content">
+    <div class="woocommerce-info">
+        Cám ơn bạn đã tin dùng và sử dụng dịch vụ của chúng tôi.
+    </div>
+    <div class="your-order">        
+        <h2>Thông tin đơn hàng của bạn</h2>
+        <table class="order-table">
+            <thead>
+                <tr>
+                    <th class="product-no">STT</th>
+                    <th class="product-name">Tên hành khách</th>
+                    <th class="product-price">Ngày sinh</th>
+                    <th class="product-quantity">Loại vé</th>
+                    <th class="product-subtotal">$</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in memberCart.Customers">                    
+                    <td class="product-no">
+                        <span>{{$index + 1}}</span>
+                    </td>
+                    <td class="product-name">
+                        <span>{{item.FullName}}</span>
+                    </td>
+                    <td class="product-price">
+                        <span class="amount" ng-bind="item.BirthDay | date:'dd MMMM yyyy'"></span>
+                    </td>
+                    <td class="product-quantity">
+                        {{item.ticketType}}
+                    </td>
+                    <td class="product-subtotal">
+                        <span class="amount">{{item.price | number}} vnđ</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="billing-info">
+            <h3>Thông tin người thanh toán</h3>
+            <table class="billing-table">
+                <tbody>
+                    <tr>
+                        <td colspan="2">
+                            <h4 class="title">Họ tên</h4>
+                            <p ng-bind="memberCart.PayerName"></p>
+                        </td>                        
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4 class="title">Email</h4>
+                            <p ng-bind="memberCart.PayerEmail"></p>
+                        </td>
+                        <td>
+                            <h4 class="title">Số điện thoại</h4>
+                            <p ng-bind="memberCart.PayerPhone"></p>
+                        </td>
+                    </tr>                   
+                </tbody>
+            </table>
+        </div>
+        <div class="cart-detail">
+            <h3>Phương thức thanh toán</h3>
+            <div style="padding-top: 25px">Paypal</div>
+        </div>        
+    </div>
+    <div class="form-row place-order text-right">
+        <a ui-sref="app.home" class="awe-btn awe-btn-style3">Trở về trang chủ</a>
+    </div>
+</div>
