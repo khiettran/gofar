@@ -1,7 +1,7 @@
 /**
  * @ngdoc overview
  * @name Member controller
- * @description 
+ * @description
  *
  */
 (function () {
@@ -11,7 +11,7 @@
         $scope.linkShared = "";
         function buildTourSliderImage(imgs) {
             $scope.images = [];
-            for (var i = 0 ; i < imgs.length; i++) {
+            for (var i = 0; i < imgs.length; i++) {
                 var image = {
                     src: imgs[i],
                     alt: "image " + i,
@@ -41,13 +41,6 @@
             }
             $scope.getTourDetail();
         }
-        /* 
-		----FOR-TOUR-COMMENTS----////////////////////
-		---------------------------------------------
-		------------TRAN TUNG - 30/10/2016-----------
-		---------------------------------------------
-		---------------------------------------------
-        */
 
         // VALUE OF RATING USER
 
@@ -71,13 +64,13 @@
 
         $scope.loadingMyRat = function () {
             httpService.sendGet(apiRoutes.tourRatingDetail
-                                        .replace('{IdTour}', 1)
-                                        .replace('{IdAccount}', 27)).then(function (response) {
-                                            if (response && response.Success === true) {
-                                                $scope.myRat = response.Data;
-                                                $scope.reloadMyRat();
-                                            }
-                                        });
+                .replace('{IdTour}', 1)
+                .replace('{IdAccount}', 27)).then(function (response) {
+                if (response && response.Success === true) {
+                    $scope.myRat = response.Data;
+                    $scope.reloadMyRat();
+                }
+            });
         };
         $scope.loadingMyRat();
 
@@ -103,21 +96,21 @@
         $scope.tourComments;
 
         $scope.resetFilter = function () {
-            $scope.paging = { currentPage: 1, totalPage: 6, pageSize: 5, currentItem: 0, totalItems: 120 };
-            $scope.filter = { keyword: "", pageNumber: 1, pageSize: 5 };
+            $scope.paging = {currentPage: 1, totalPage: 6, pageSize: 5, currentItem: 0, totalItems: 120};
+            $scope.filter = {keyword: "", pageNumber: 1, pageSize: 5};
         }
 
         $scope.filterItems = function () {
 
             httpService.sendGet(apiRoutes.tourCommentFilter.replace('{IdTour}', $stateParams.tourId),
-                                                                $scope.filter,
-                                                                $scope.setContentLoading).then(function (response) {
-                                                                    if (response && response.Success === true) {
-                                                                        $scope.tourComments = response.Data ? response.Data.Items : [];
-                                                                        $scope.copiedData = $scope.tourComments;
-                                                                        $scope.paging = commonService.preparePagination(response);
-                                                                    }
-                                                                });
+                $scope.filter,
+                $scope.setContentLoading).then(function (response) {
+                    if (response && response.Success === true) {
+                        $scope.tourComments = response.Data ? response.Data.Items : [];
+                        $scope.copiedData = $scope.tourComments;
+                        $scope.paging = commonService.preparePagination(response);
+                    }
+                });
         }
 
         if ($stateParams.tourId) {
@@ -164,13 +157,6 @@
             //$log.info('Item changed to ' + JSON.stringify(item));
         }
 
-        /* 
-		---------------------------------------------
-		---------------------------------------------
-		------------TRAN TUNG - 30/10/2016-----------
-		---------------------------------------------
-		---------------------------------------------
-        */
     }
 
     angular.module('app').controller('TourDetailController', ['$scope', '$location', '$stateParams', 'commonService', 'HttpService', 'NgMap', 'API_ROUTES', 'RAT_VALUES', 'alertify', tourDetailController]);
@@ -182,7 +168,7 @@ function InitMap() {
 
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 8,
-        center: { lat: 10.7750993, lng: 106.6586053 }
+        center: {lat: 10.7750993, lng: 106.6586053}
     });
 
     var geocoder = new google.maps.Geocoder;
@@ -204,9 +190,9 @@ function InitMap() {
     function geocodeLatLng(geocoder, infowindow) {
         var input = document.getElementById('latlng').value;
         var latlngStr = input.split(',', 2);
-        var latlng = { lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1]) };
+        var latlng = {lat: parseFloat(latlngStr[0]), lng: parseFloat(latlngStr[1])};
         deleteMarkers();
-        geocoder.geocode({ 'location': latlng }, function (results, status) {
+        geocoder.geocode({'location': latlng}, function (results, status) {
             if (status === 'OK') {
                 if (results[1]) {
                     map.setCenter(results[1].geometry.location);
@@ -223,7 +209,7 @@ function InitMap() {
     function geocodeAddress(geocoder, infowindow) {
         var address = document.getElementById('address').value;
         deleteMarkers();
-        geocoder.geocode({ 'address': address }, function (results, status) {
+        geocoder.geocode({'address': address}, function (results, status) {
             if (status === 'OK') {
                 map.setCenter(results[0].geometry.location);
                 createMarker(results[0].geometry.location, results[0].geometry.location.lat(), results[0].geometry.location.lng(), results[0].formatted_address);
@@ -234,7 +220,7 @@ function InitMap() {
     }
 
     function createMarker(latLng, lat, lng, address) {
-        var newMarker = new google.maps.Marker({ position: latLng, map: map });
+        var newMarker = new google.maps.Marker({position: latLng, map: map});
         var newInfowindow = new google.maps.InfoWindow;
         newInfowindow.setContent('Address: ' + address + '<br />Lat: ' + lat + ', Lng: ' + lng)
         newInfowindow.open(newMarker.get('map'), newMarker);
@@ -246,9 +232,6 @@ function InitMap() {
 
         markers.push(newMarker);
     }
-
-
-
 
 
     // Sets the map on all markers in the array.

@@ -6,24 +6,14 @@
 var MongoClient = require('mongodb').MongoClient,
     co = require('co'),
     assert = require('assert');
+const connection_string = 'mongodb://localhost:27017/travelmanamgement';
 
-exports.DbConfig = function () {
-    var db = null;
-    //noinspection JSUnresolvedFunction
-    co(function*() {
-        db = yield MongoClient.connect(dbUrl);
-        return Promise.resolve(db);
-    }).then(function (dbConnection) {
-        db = dbConnection;
-    }, function (err) {
-        console.log(err);
-    });
-
+module.exports.DBHelper = function () {
 
     return {
         MongoClient: MongoClient,
         Co: co,
         Assert: assert,
-        DBConnection: db
+        Connection: connection_string
     }
 }

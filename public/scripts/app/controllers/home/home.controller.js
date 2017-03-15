@@ -1,27 +1,27 @@
 /**
  * @ngdoc overview
  * @name Member controller
- * @description 
+ * @description
  *
  */
-(function() {   
+(function () {
     function homeController($scope, $state, $localStorage, $stateParams, httpService, ngMap, commonService, apiRoutes, tourCategories) {
         commonService.datetimePicker($scope);
         $scope.commonService = commonService;
         $scope.tourCategories = tourCategories;
-        $scope.filter = {categoryId: $stateParams.categoryId};        
+        $scope.filter = {categoryId: $stateParams.categoryId};
         $scope.recentViewedTours = $localStorage.recentViewedTours ? $localStorage.recentViewedTours : [];
         var viewedTourLength = 10;
         // Declare variable        
-        $scope.googleMapsUrl = "https://maps.googleapis.com/maps/api/js?key=AIzaSyB2xONcCM5lw4HqsC8tjztvHzkI8IBTU_4";     
-        $scope.isHideSearchResult = true;                   
+        $scope.googleMapsUrl = "https://maps.googleapis.com/maps/api/js?key=AIzaSyB2xONcCM5lw4HqsC8tjztvHzkI8IBTU_4";
+        $scope.isHideSearchResult = true;
 
         $scope.filterTour = function () {
             $scope.isHideSearchResult = false;
             httpService.sendGet(apiRoutes.tourFilter, $scope.filter, $scope.setContentLoading).then(function (response) {
                 if (response && response.Success === true) {
                     $scope.tours = response.Data ? response.Data.Items : [];
-                    $scope.paging = commonService.preparePagination(response);                    
+                    $scope.paging = commonService.preparePagination(response);
                 }
             });
         }
@@ -49,26 +49,28 @@
             }
             $localStorage.recentViewedTours = $scope.recentViewedTours;
         }
+
         function filterHotTrip() {
             var hotTripFilter = {PageSize: 10, HotTrip: true};
             httpService.sendGet(apiRoutes.tourFilter, hotTripFilter, $scope.setContentLoading).then(function (response) {
-                if (response && response.Success === true) {
-                    $scope.hotTours = response.Data ? response.Data.Items : [];
-                }
+                //if (response instanceof Array) {
+                $scope.hotTours = response ? response : [];
+                //}
             });
         }
+
         filterHotTrip();
 
-        $scope.addRecentViewedTour = function (tour) {            
+        $scope.addRecentViewedTour = function (tour) {
             addTourRecent(tour);
-            
-            $state.go('app.tour', { tourId: tour.Id });            
+
+            $state.go('app.tour', {tourId: tour.Id});
         }
 
         $scope.bookNowClick = function (tour) {
             addTourRecent(tour);
 
-            $state.go('app.payment.cart', { tourId: tour.Id });
+            $state.go('app.payment.cart', {tourId: tour.Id});
 
         }
 
@@ -95,6 +97,6 @@
             $scope.filterTour();
         };
     }
-   
+
     angular.module('app').controller('HomeController', ['$scope', '$state', '$localStorage', '$stateParams', 'HttpService', 'NgMap', 'commonService', 'API_ROUTES', 'TOUR_CATEGORIES', homeController]);
 })();

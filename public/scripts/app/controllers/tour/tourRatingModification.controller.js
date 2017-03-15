@@ -49,11 +49,13 @@
         };
 
         $scope.isOpenCommentContent = function() {
-          return $mdSidenav('tour-comment-content').isOpen();
+            return true;
+          //return $mdSidenav('tour-comment-content').isOpen();
         };
 
         $scope.isOpenRatingContent = function(){
-          return $mdSidenav('tour-rating-content').isOpen();
+            return true;
+          //return $mdSidenav('tour-rating-content').isOpen();
         };
 
         /**
@@ -80,32 +82,42 @@
          */
         function buildDelayedToggler(navID) {
           return debounce(function() {
-            // Component lookup should always be available since we are not using `ng-if`
-            $mdSidenav(navID)
-              .toggle()
-              .then(function () {
-                $log.debug("toggle " + navID + " is done");
+              // Component lookup should always be available since we are not using `ng-if`
+              $timeout(function () {
+                  $mdSidenav(navID).toggle();
               });
-          }, 200);
+          })
+          //  $mdSidenav(navID)
+          //    .toggle()
+          //    .then(function () {
+          //      $log.debug("toggle " + navID + " is done");
+          //    });
+          //}, 200);
         }
 
         function buildToggler(navID) {
           return function() {
-            // Component lookup should always be available since we are not using `ng-if`
-            $mdSidenav(navID)
-              .toggle()
-              .then(function () {
-                $log.debug("toggle " + navID + " is done");
-              });
+
+              $timeout(function () {
+                $mdSidenav(navID).toggle();
+              })
+            //$mdSidenav(navID)
+            //  .toggle()
+            //  .then(function () {
+            //    $log.debug("toggle " + navID + " is done");
+            //  });
           };
         }
 
         $scope.close = function (navID) {
           // Component lookup should always be available since we are not using `ng-if`
-          $mdSidenav(navID).close()
-            .then(function () {
-              $log.debug("close " + navID + " is done");
+            $timeout(function(){
+                $mdSidenav(navID).close();
             });
+          //$mdSidenav(navID).close()
+          //  .then(function () {
+          //    $log.debug("close " + navID + " is done");
+          //  });
         };
 
         function validateCommentBeforeSubmit() {

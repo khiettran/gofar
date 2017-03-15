@@ -3,7 +3,6 @@
  */
 'use strict';
 
-exports = function (app) {
+module.exports = function () {
     var Router = app.Router();
-
 }

@@ -1,6 +1,6 @@
 ﻿'use strict';
 
-var ApiRootURL = "http://localhost:8001/";
+var ApiRootURL = "http://localhost:3000/";
 var Authorization = "";
 var ApplicationTokenId = "";
 var ClassifyIds = { Web: 4 };
