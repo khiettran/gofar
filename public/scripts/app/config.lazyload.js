@@ -226,7 +226,7 @@
               module: false,
               files: [
                   '/scripts/app/controllers/tour/tour.detail.controller.js',
-                  '/scripts/app/controllers/tour/tourRatingModification.controller.js',
+                  '/scripts/app/controllers/tour/tour.rating.controller.js',
                   '/scripts/libs/angular/angular-map/ng-map.min.js'
               ]
           },

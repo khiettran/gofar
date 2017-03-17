@@ -191,7 +191,7 @@
             restrict: 'A',
             // responsible for registering DOM listeners as well as updating the DOM
             link: function (scope, element, attrs) {
-                element.show().revolution({
+                var revapi = element.show().revolution({
                     ottedOverlay: "none",
                     delay: 10000,
                     startwidth: 1600,
@@ -266,6 +266,10 @@
                     hideCaptionAtLimit: 0,
                     hideAllCaptionAtLilmit: 0,
                     startWithSlide: 0
+                });
+
+                return scope.$on('$destroy', function() {
+                    return revapi.revkill();
                 });
             }
         };

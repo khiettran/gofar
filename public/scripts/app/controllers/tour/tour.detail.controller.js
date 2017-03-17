@@ -31,9 +31,8 @@
                 var url = apiRoutes.tourDetail.replace("{tourId}", $scope.tourId);
 
                 httpService.sendGet(url).then(function (response) {
-                    if (response && response.Success === true) {
-                        $scope.tour = response.Data;
-                        console.log($scope.tour);
+                    if (!response.error) {
+                        $scope.tour = response[0];
                         $scope.linkShared = "http://dulich.vnexpress.net/tin-tuc/cong-dong/dau-chan/trai-long-cua-nu-phuot-thu-kho-tam-vi-xinh-dep-3494051.html";//"http://localhost:8083/app/chi-tiet/" + $scope.tour.Id;
                         buildTourSliderImage($scope.tour.PlaceImages);
                     }
@@ -66,6 +65,7 @@
             httpService.sendGet(apiRoutes.tourRatingDetail
                 .replace('{IdTour}', 1)
                 .replace('{IdAccount}', 27)).then(function (response) {
+                    //TODO: check response
                 if (response && response.Success === true) {
                     $scope.myRat = response.Data;
                     $scope.reloadMyRat();
@@ -105,6 +105,7 @@
             httpService.sendGet(apiRoutes.tourCommentFilter.replace('{IdTour}', $stateParams.tourId),
                 $scope.filter,
                 $scope.setContentLoading).then(function (response) {
+                    //TODO: check response
                     if (response && response.Success === true) {
                         $scope.tourComments = response.Data ? response.Data.Items : [];
                         $scope.copiedData = $scope.tourComments;

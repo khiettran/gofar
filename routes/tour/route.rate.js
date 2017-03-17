@@ -4,7 +4,7 @@
 'use strict';
 
 var router = require('express').Router();
-var TourRating = require('../../services/TourRating');
+var TourRating = require('../../services/tour/service.rating');
 
 router.get('/detail/:tourId/:accountId', function (req, res) {
     TourRating.getByTourAndAccount(res, req.params.tourId, req.params.accountId);

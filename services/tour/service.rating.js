@@ -2,7 +2,7 @@
  * Created by kira on 3/15/17.
  */
 
-var db = require('../helpers/db');
+var db = require('../../helpers/db');
 
 module.exports.getByTourAndAccount = function (res, tourId, accountId) {
     //TODO: remove constant value

@@ -37,10 +37,12 @@ angular.module("app").constant("PAYMENT_STEPS", {
 });
 
 angular.module("app").constant("API_ROUTES", {
+    //member
     memberLogin: "api/v1/access/loginmember",
     memberLogout: "api/v1/access/logout",
     memberSignUp: "api/v1/user/signup",
     memberSignUpFB: "api/v1/user/signupfb",
+    //tour
     tourFilter: "api/v1/tour/filter",
     tourDetail: "api/v1/tour/{tourId}/detail",
     tourCommentFilter: "api/v1/tourcomment/filter/{IdTour}",
@@ -48,9 +50,11 @@ angular.module("app").constant("API_ROUTES", {
     tourRatingAdd: "api/v1/tourrating/add",
     tourRatingUpdate: "api/v1/tourrating/update",
     tourRatingDetail: "api/v1/tourrating/detail/{IdTour}/{IdAccount}",
+    //vehicle
     vehicleCategoryDetail: "api/v1/vehiclecategory/detail/{Id}",
     vehicleCompanyDetail: "api/v1/vehiclecompany/detail/{Id}",
     vehicleDetail: "api/v1/vehicle/detail/{1}",
+    //payment
     getAccessToken: "api/v1/payment/accesstoken",
     paymentCreateBill: "api/v1/payment/create",
     paypalBillingAgreement: "https://api.sandbox.paypal.com/v1/payments/billing-agreements",    
