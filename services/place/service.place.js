@@ -8,14 +8,14 @@ var jsonUtil = require('../../helpers/json');
 var Place = {
     //get place image by cruise detail
     getPlaceImageByCruise: function (cruises) {
-        var _cruisevalues = [];
+        var _cruise_values = [];
         if (cruises instanceof Array) {
-            _cruisevalues.push(jsonUtil.toArrayValues(cruises, 'PlaceId'));
+            _cruise_values.push(jsonUtil.toArrayValues(cruises, 'PlaceId'));
         } else {
-            _cruisevalues.push(cruises);
+            _cruise_values.push(cruises);
         }
 
-        return db.get().collection('dbo.PlaceImage').find({PlaceId: {$in: _cruisevalues}}).toArray();
+        return db.get().collection('dbo.PlaceImage').find({PlaceId: {$in: _cruise_values}}).toArray();
     }
 };
 

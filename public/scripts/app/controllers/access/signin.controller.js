@@ -26,11 +26,11 @@
 
         $scope.signIn = function () {
             if (isEmpty($scope.user.Email) || isEmpty($scope.user.Password)){
-                alertify.logPosition("top right").error("Bạn chưa nhập thông tin đăng nhập");
+                alertify.logPosition("top right").error("Please fill info for logging in");
                 return;
             }
             if ($scope.user.Password.length < 6 || $scope.user.Password.length > 64) {
-                alertify.logPosition("top right").error("Mật khậu phải từ 6-64 ký tự");
+                alertify.logPosition("top right").error("password length must be in range [6-64] characters");
                 return;
             }
 

@@ -40,5 +40,5 @@ module.exports = function (app) {
 
     app.use('/api/v1/tourrating/', require('./route.rate'));
 
-    app.use('/api/v1/tourcomment/', require('./route.comment'))
+    app.use('/api/v1/tourcomment/', require('./route.comment'));
 };
