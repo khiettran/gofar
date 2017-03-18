@@ -15,9 +15,9 @@
         // Private function
         function doSignIn() {
             httpService.sendPost(apiRoutes.memberLogin, $scope.user, $scope.setContentLoading).then(function (response) {
-                if (response && response.Success === true) {
-                    $window.localStorage.setItem("token", response.Data.SessionToken);
-                    $window.localStorage.setItem("memberInfo", JSON.stringify(response.Data));
+                if (!response.error) {
+                    $window.localStorage.setItem("token", response.SessionToken);
+                    $window.localStorage.setItem("memberInfo", JSON.stringify(response));
                     $scope.updateMemberInfo();
                     $location.path(appRoutes.homePage);
                 }

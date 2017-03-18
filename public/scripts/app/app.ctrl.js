@@ -6,24 +6,24 @@
  * Controller of the app
  */
 
-(function() {
+(function () {
     'use strict';
 
     // ReSharper disable once InconsistentNaming
     function appCtrl($scope, $localStorage, $location, $rootScope, $anchorScroll, $timeout, $window, $state, $sessionStorage, appRoutes, apiRoutes, httpService, alertify, $translate) {
-        $scope.app = { name: "GOFAR" };
-        
-        $scope.updateMemberInfo = function () {          
-            if ($window.localStorage.memberInfo){
+        $scope.app = {name: "GOFAR"};
+
+        $scope.updateMemberInfo = function () {
+            if ($window.localStorage.memberInfo) {
                 $scope.memberInfo = JSON.parse($window.localStorage.memberInfo);
                 $scope.memberInfo.isLogedIn = true;
                 $scope.memberInfo.displayName = ($scope.memberInfo.AccountProfile && $scope.memberInfo.AccountProfile.Username)
                     ? $scope.memberInfo.AccountProfile.Username : $scope.memberInfo.Email;
             } else {
-                $scope.memberInfo = { isLogedIn: false };
+                $scope.memberInfo = {isLogedIn: false};
             }
         }
-      
+
         $scope.updateMemberInfo();
         // Sign out
         $scope.signOut = function () {
@@ -32,7 +32,7 @@
                 if (response && response.Success === true) {
                     delete $window.localStorage.token;
                     delete $window.localStorage.memberInfo;
-                    $scope.memberInfo = { isLogedIn: false };                    
+                    $scope.memberInfo = {isLogedIn: false};
                 } else {
                     alert(response.Message);
                 }
@@ -49,7 +49,7 @@
         function statusChangeCallback(response) {
             if (response.status === 'connected') {
                 registerAccount();
-            } else if (response.status === 'not_authorized') {                
+            } else if (response.status === 'not_authorized') {
                 alertify.logPosition("top right").error("'Đăng nhập facebook thất bại.");
             } else {
 
@@ -65,15 +65,16 @@
             });
         }
 
-        $window.fbAsyncInit = function () {            
-            if (!$scope.memberInfo || !$scope.memberInfo.Id) {                
+        $window.fbAsyncInit = function () {
+            if (!$scope.memberInfo || !$scope.memberInfo.Id) {
                 FB.init({
-                    appId: 585583858220085,
-                    cookie: true,  // enable cookies to allow the server to access
-                    // the session
-                    xfbml: true,  // parse social plugins on this page
-                    version: 'v2.5' // use graph api version 2.5
+                    appId: '950254665109748',
+                    cookie: true,
+                    xfbml: true,
+                    version: 'v2.8'
                 });
+
+                // FB.AppEvents.logPageView();
 
                 // Now that we've initialized the JavaScript SDK, we call
                 // FB.getLoginStatus().  This function gets the state of the
@@ -99,26 +100,32 @@
 
         // Here we run a very simple test of the Graph API after login is
         // successful.  See statusChangeCallback() for when this call is made.
-        function registerAccount() {          
-            FB.api('/me', function (response) {                
-                var data = { FacebookId: response.id, AccountProfile: { Username: response.name, FullName: response.name } };
+        function registerAccount() {
+            FB.api('/me', function (response) {
+                var data = {
+                    FacebookId: response.id,
+                    AccountProfile: {Username: response.name, FullName: response.name}
+                };
                 httpService.sendPost(apiRoutes.memberSignUpFB, data).then(function (svresponse) {
-                    if (svresponse && svresponse.Success === true) {
-                        $window.localStorage.setItem("token", svresponse.Data.SessionToken);
-                        $window.localStorage.setItem("memberInfo", JSON.stringify(svresponse.Data));
-                        $scope.updateMemberInfo();                       
+                    if (!svresponse.message && !svresponse.error) {
+                        $window.localStorage.setItem("token", svresponse.SessionToken);
+                        $window.localStorage.setItem("memberInfo", JSON.stringify(svresponse));
+                        $scope.updateMemberInfo();
+                    } else if (svresponse.error) {
+                        alertify.logPosition("top right").error(svresponse.error);
                     } else {
-                        alertify.logPosition("top right").error(svresponse.Message);
+                        alertify.logPosition('top right').info(svresponse.message);
                     }
-                });                
+                });
             });
         }
+
         ///END FACEBOOK
     }
 
     angular
-      .module('app')
-      .controller('AppCtrl', appCtrl);
+        .module('app')
+        .controller('AppCtrl', appCtrl);
 
     appCtrl.$inject = ['$scope', '$localStorage', '$location', '$rootScope', '$anchorScroll', '$timeout', '$window', '$state', '$sessionStorage'
         , 'APP_ROUTES'

@@ -8,17 +8,17 @@
 // ReSharper disable once InconsistentNaming
     function signUpController($scope, $location, $window, httpService, alertify, apiRoutes, appRoutes) {
         // Declare variable
-        $scope.user = { Email: "", Password: "" };        
+        $scope.user = { Email: "", Password: "" };
         if ($window.localStorage.memberInfo) {
             $location.path(appRoutes.homePage)
         }
         // Private function
         function doSignUp() {
-            var model = { model: $scope.user, files: [] };
+            var model = { model: $scope.user};
             httpService.sendPostMedia(apiRoutes.memberSignUp, model, $scope.setContentLoading).then(function (response) {
-                if (response && response.Success === true) {
-                    $window.localStorage.setItem("token", response.Data.SessionToken);
-                    $window.localStorage.setItem("memberInfo", JSON.stringify(response.Data));
+                if (!response.error) {
+                    $window.localStorage.setItem("token", response.SessionToken);
+                    $window.localStorage.setItem("memberInfo", JSON.stringify(response));
                     $scope.updateMemberInfo();
                     $location.path(appRoutes.homePage);
                 }

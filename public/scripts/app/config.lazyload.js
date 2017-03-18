@@ -278,7 +278,7 @@
               ]
           },
           {
-              name: 'PersonalController',
+              name: 'UserController',
               module: false,
               files: [
                   '/scripts/app/controllers/user/personal.controller.js'
