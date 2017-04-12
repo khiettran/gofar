@@ -1,22 +1,33 @@
 ﻿/**
  * @ngdoc overview
  * @name Member controller
- * @description 
+ * @description
  *
  */
-(function() {   
+(function () {
     function cartController($scope, $location, $state, $stateParams, $window, $filter, commonService, httpService, paymentSteps, appRoutes, apiRoutes, alertify) {
         // Declare variable
-        if (!$stateParams.tourId){
+        if (!$stateParams.tourId) {
             alertify.logPosition("top right").error($filter('translate')('errorMessages.invalidUrl'));
             $location.path(appRoutes.homePage);
         }
         else {
-            $scope.discountCodes = [{code: "Discount1", discountPrice: -100000}, {code: "Discount2", discountPrice: -200000}];
+            $scope.discountCodes = [{code: "Discount1", discountPrice: -100000}, {
+                code: "Discount2",
+                discountPrice: -200000
+            }];
             if ($window.localStorage.memberCart) {
-                $scope.memberCart = JSON.parse($window.localStorage.memberCart);                
+                $scope.memberCart = JSON.parse($window.localStorage.memberCart);
             } else {
-                $scope.memberCart = { Customers: [], TourId: $stateParams.tourId, tour: {}, step: paymentSteps.customerInfo, totalPrice: 0, discountCodes: [], executeLink: "" };                
+                $scope.memberCart = {
+                    Customers: [],
+                    TourId: $stateParams.tourId,
+                    tour: {},
+                    step: paymentSteps.customerInfo,
+                    totalPrice: 0,
+                    discountCodes: [],
+                    executeLink: ""
+                };
                 // GET tour info
                 var url = apiRoutes.tourDetail.replace("{tourId}", $stateParams.tourId);
                 httpService.sendGet(url).then(function (response) {
@@ -35,7 +46,7 @@
 
             commonService.datetimePicker($scope);
             $scope.commonService = commonService;
-            $scope.customer = { fullName: "" };
+            $scope.customer = {fullName: ""};
             $scope.paymentSteps = paymentSteps;
 
             $scope.addCustomer = function () {
@@ -44,19 +55,25 @@
                 if ($scope.memberCart.tour.PromotionPrice < $scope.memberCart.tour.PriceAdult) {
                     var temp = {
                         FullName: $scope.customer.fullName
-                        , BirthDay: $scope.customer.birthDay
-                        , ticketType: age > 12 ? "Người lớn" : (age > 2 ? "Trẻ em" : "Trẻ sơ sinh")
-                        , price: age > 12 ? $scope.memberCart.tour.PromotionPrice : (age > 2 ? $scope.memberCart.tour.PromotionPriceChild : $scope.memberCart.tour.PriceInfant)
+                        ,
+                        BirthDay: $scope.customer.birthDay
+                        ,
+                        ticketType: age > 12 ? "Người lớn" : (age > 2 ? "Trẻ em" : "Trẻ sơ sinh")
+                        ,
+                        price: age > 12 ? $scope.memberCart.tour.PromotionPrice : (age > 2 ? $scope.memberCart.tour.PromotionPriceChild : $scope.memberCart.tour.PriceInfant)
                     }
                     $scope.memberCart.totalPrice += temp.price;
                     $scope.memberCart.Customers.push(temp);
                 }
-                else {                    
+                else {
                     var temp = {
                         FullName: $scope.customer.fullName
-                       , BirthDay: $scope.customer.birthDay
-                       , ticketType: age > 12 ? "Người lớn" : (age > 2 ? "Trẻ em" : "Trẻ sơ sinh")
-                       , price: age > 12 ? $scope.memberCart.tour.PriceAdult : (age > 2 ? $scope.memberCart.tour.PriceChild : $scope.memberCart.tour.PriceInfant)
+                        ,
+                        BirthDay: $scope.customer.birthDay
+                        ,
+                        ticketType: age > 12 ? "Người lớn" : (age > 2 ? "Trẻ em" : "Trẻ sơ sinh")
+                        ,
+                        price: age > 12 ? $scope.memberCart.tour.PriceAdult : (age > 2 ? $scope.memberCart.tour.PriceChild : $scope.memberCart.tour.PriceInfant)
                     }
                     $scope.memberCart.totalPrice += temp.price;
                     $scope.memberCart.Customers.push(temp);
@@ -82,14 +99,14 @@
             }
 
             // Payment Info
-            $scope.doPurchase = function(){
+            $scope.doPurchase = function () {
                 if (!validateCustomerPaymentInfo())
                     return;
                 httpService.sendPost(apiRoutes.paymentCreateBill, $scope.memberCart, $scope.setContentLoading).then(function (response) {
                     if (response && response.Data) {
                         $scope.approvalLink = "";
                         $scope.executeLink = "";
-                        for (var i = 0 ; i < response.Data.Link.length; i++) {
+                        for (var i = 0; i < response.Data.Link.length; i++) {
                             if (response.Data.Link[i].rel == "approval_url") {
                                 $scope.approvalLink = response.Data.Link[i].href;
                             } else if (response.Data.Link[i].rel == "execute") {
@@ -98,7 +115,7 @@
                         }
                         if ($scope.approvalLink != "") {
                             $scope.memberCart.executeLink = $scope.executeLink;
-                            $scope.memberCart.step = paymentSteps.finishPayment;                            
+                            $scope.memberCart.step = paymentSteps.finishPayment;
                             $window.localStorage.setItem("memberCart", JSON.stringify($scope.memberCart));
                             $window.open($scope.approvalLink);
                         }
@@ -106,8 +123,8 @@
                             alertify.logPosition("top right").error("Có lỗi xảy ra trong quá trình thanh toán");
                     }
                     else
-                        alertify.logPosition("top right").error("Có lỗi xảy ra trong quá trình thanh toán");                      
-                });                              
+                        alertify.logPosition("top right").error("Có lỗi xảy ra trong quá trình thanh toán");
+                });
             }
 
             // Finish Payment                  
@@ -116,9 +133,9 @@
                 if ($scope.memberCart.step == paymentSteps.finishPayment && $scope.memberCart.executeLink && $scope.memberCart.executeLink != "") {
                     httpService.sendGet(apiRoutes.getAccessToken, $scope.setContentLoading).then(function (response) {
                         if (response && response.Success) {
-                            httpService.sendPostPaypal($scope.memberCart.executeLink, { payer_id: $location.search().PayerID }, response.Data).then(function (response) {
+                            httpService.sendPostPaypal($scope.memberCart.executeLink, {payer_id: $location.search().PayerID}, response.Data).then(function (response) {
                                 console.log(response);
-                                if(response){
+                                if (response) {
                                     //var paymentHistory = [];
                                     //if ($window.localStorage.paymentHistory) {
                                     //    paymentHistory = JSON.parse($window.localStorage.paymentHistory);
@@ -177,6 +194,6 @@
             return true;
         }
     }
-   
+
     angular.module('app').controller('CartController', ['$scope', '$location', '$state', '$stateParams', '$window', '$filter', 'commonService', 'HttpService', 'PAYMENT_STEPS', 'APP_ROUTES', 'API_ROUTES', 'alertify', cartController]);
 })();

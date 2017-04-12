@@ -172,7 +172,7 @@
             }
 
             httpService.sendPost(apiRoutes.tourCommentAdd, $scope.cmtModel).then(function (response) {
-                if (response && response.Success === true) {
+                if (!response.error) {
                     filterItems();
                     $scope.cmtModel.Comment = "";
                     $scope.close('tour-comment-content');
@@ -193,9 +193,9 @@
                 $scope.ratModel.Interesting) / 4;
 
             httpService.sendPost(apiRoutes.tourRatingAdd, $scope.ratModel).then(function (response) {
-                if (response && response.Success === true) {
+                if (!response.error) {
                     $scope.close('tour-rating-content');
-                    myRat = response.Data;
+                    myRat = response;
                     loadingMyRat();
                 }
             });

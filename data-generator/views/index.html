@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data import</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+</head>
+<body>
+<script>
+    function importTour() {
+        $.ajax({
+            url: "http://localhost:3001/import-tour",
+            beforeSend: function (xhr) {
+                xhr.overrideMimeType("text/plain; charset=x-user-defined");
+            }
+        })
+            .done(function (data) {
+                var result = document.getElementById("result");
+                result.innerHTML = data;
+            });
+    }
+
+</script>
+<button name="execute" type="button" onclick="importTour()">Import Tour</button>
+<br/>
+
+<h5 id="result"></h5>
+</body>
+</html>

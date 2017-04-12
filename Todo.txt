@@ -2,3 +2,6 @@
  + http://stackoverflow.com/questions/14460231/how-do-you-import-multiple-javascript-files-in-html-index-file-without-the-bloat
 
 - investigate yied
+
+- rating: http://rateyo.fundoocode.ninja/
+http://irfandurmus.com/projects/jquery-star-rating-plugin/

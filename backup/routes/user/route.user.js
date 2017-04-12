@@ -3,7 +3,7 @@
  */
 
 var constants = require('../../common/constants');
-var userService = require('../../services/user/service.user');
+var userService = require('.././user/service.user');
 
 module.exports = function (app) {
 

@@ -48,7 +48,7 @@ angular.module("app").constant("API_ROUTES", {
     tourCommentFilter: "api/v1/tourcomment/filter/{IdTour}",
     tourCommentAdd: "api/v1/tourcomment/add",
     tourRatingAdd: "api/v1/tourrating/add",
-    tourRatingUpdate: "api/v1/tourrating/update",
+    tourRatingUpdate: "api/v1/tourrating/update", // not implemented yet
     tourRatingDetail: "api/v1/tourrating/detail/{IdTour}/{IdAccount}",
     //vehicle
     vehicleCategoryDetail: "api/v1/vehiclecategory/detail/{Id}",

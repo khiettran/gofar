@@ -50,7 +50,8 @@
             if (response.status === 'connected') {
                 registerAccount();
             } else if (response.status === 'not_authorized') {
-                alertify.logPosition("top right").error("'Đăng nhập facebook thất bại.");
+                //TODO: uncomment
+                // alertify.logPosition("top right").error("Login Facebook Failed.");
             } else {
 
             }
