@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "description": "A comercial website of travel",
-  "repository": "https://github.com/angular/angular-seed",
+  "repository": "https://github.com/khiettran/gofar",
   "license": "MIT",
   "devDependencies": {
     "bower": "^1.7.7",
@@ -31,7 +31,8 @@
     "preupdate-webdriver": "npm install",
     "update-webdriver": "webdriver-manager update",
     "preprotractor": "npm run update-webdriver",
-    "protractor": "protractor e2e-tests/protractor.conf.js"
+    "protractor": "protractor e2e-tests/protractor.conf.js",
+    "data-import": "nodemon data-generator/import.js"
   },
   "dependencies": {
     "assert": "^1.4.1",
@@ -42,8 +43,10 @@
     "https": "^1.0.0",
     "mongodb": "^2.2.24",
     "path": "^0.12.7",
+    "phantom": "^4.0.2",
     "serve-favicon": "^2.4.1",
     "socket.io": "^1.7.3",
-    "url": "^0.11.0"
+    "url": "^0.11.0",
+    "write": "^0.3.3"
   }
 }

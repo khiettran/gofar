@@ -51,11 +51,9 @@
         }
 
         function filterHotTrip() {
-            var hotTripFilter = {PageSize: 10, HotTrip: true};
+            let hotTripFilter = {PageSize: 10};
             httpService.sendGet(apiRoutes.tourFilter, hotTripFilter, $scope.setContentLoading).then(function (response) {
-                //if (response instanceof Array) {
                 $scope.hotTours = response ? response : [];
-                //}
             });
         }
 

@@ -1,0 +1,35 @@
+{
+  "manifest_version": 2,
+  "name": "Loading Tours",
+  "version": "1.0",
+
+  "description": "This extension will automatically loading all of tours from website travel.com.vn",
+  "icons": { "16": "images/icon16.png"},
+
+  "browser_action": {
+    "default_icon": {
+      "16": "images/icon16.png",
+      "24": "images/icon24.png",
+      "32": "images/icon32.png"
+    },
+
+    "default_title": "Loading Tour Extension"
+  },
+
+  "author": "khiet tran",
+
+  "chrome_settings_overrides": {
+    "homepage": "https://travel.com.vn/du-lich-viet-nam-p1.aspx",
+    "startup_pages": ["https://travel.com.vn/du-lich-viet-nam-p1.aspx"]
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["https://travel.com.vn/"],
+      "js": ["jquery.js", "loader.js"]
+    }
+  ],
+  "permissions": [
+    "tabs", "https://travel.com.vn/*"
+  ]
+}

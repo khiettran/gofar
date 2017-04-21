@@ -45,3 +45,10 @@
 /* Payment */
 .customer-content .content-title i{color: #0091EA; padding-right: 10px}
 .customer-content #payment ul.payment_methods{padding-left: 0}
+
+.title-display {
+    white-space: nowrap;
+    overflow:hidden !important;
+    text-overflow: ellipsis;
+    display: inline-block;
+}

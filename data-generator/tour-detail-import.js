@@ -8,16 +8,19 @@ const co = require('Co');
 const request = require('request');
 const cheerio = require('cheerio');
 const encodeURL = require('encodeurl');
+const util = require('./utils');
+const download = require('image-downloader');
 
 let toutDetailImport = function () {
     co(function *() {
         try {
             let tours = yield db.get().collection('tour').find({}).toArray();
+
             const host = "https://travel.com.vn";
-            if (tours) {
+            if (tours.length > 0) {
                 let i = 0;
 
-                var interval = setInterval(function () {
+                let interval = setInterval(function () {
                     if (i === tours.length - 1) {
                         clearInterval(interval);
                     }
@@ -29,12 +32,48 @@ let toutDetailImport = function () {
                         if (response.statusCode !== 200) {
                             console.error('cannot load page with url:' + url);
                         } else {
-                            parseHtml(tours[i].id, body);
+                            let result = parseHtml(tours[i].id, body);
+                            console.log('--Save to Database --');
+                            try {
+                                db.get().collection('tour-detail').insert(result.detailModel).then(function () {
+                                    console.log('done inserting tours into db');
+                                }, function (rejectedReason) {
+                                    throw rejectedReason;
+                                });
+                            } catch (e) {
+                                throw e.message;
+                            }
+
+                            console.log('-- Download file --');
+                            let index = 0;
+                            let interval1 = setInterval(function () {
+                                let url1 = result.urlToDownload[index];
+                                if (index == result.urlToDownload.length - 1) {
+                                    clearInterval(interval1);
+                                }
+
+                                //add host for url that lack of host name
+                                if (url1.indexOf('https') < 0) {
+                                    url1 = host + url;
+                                }
+
+                                let options = {
+                                    url: url1,
+                                    dest: __dirname + '/../public/assets/images/tour/detail'
+                                };
+
+                                download.image(options).then(({filename, image}) => {
+                                    console.log('downloaded file:' + filename);
+                                }).catch((err) => {
+                                    throw err.message
+                                })
+                            }, 5000);
                         }
                     });
                     i++;
 
-                }, 1000);
+                }, 10000);
+
             }
         } catch (e) {
             console.log(e.message)
@@ -43,24 +82,24 @@ let toutDetailImport = function () {
 };
 
 function parseHtml(tour_id, content) {
-    const path = __dirname + '/../public/assets/images/';
+    let urlsToDownload = [];
+    // const path = __dirname + '/../public/assets/images/';
     const $ = cheerio.load(content);
 
-    var details = [];
-    var detailModel = {};
+    let detailModel = {};
 
     detailModel.tour_id = tour_id;
 
     const images = $('.slideShowImg').find('img');
     let slideImages = [];
-    for (let i = 0; i < images.length; i ++) {
-        let src = $(images[i]).attr('src').split('/');
-        // let length ==
+    for (let i = 0; i < images.length; i++) {
+
+        let src = $(images[i]).attr('src');
+        urlsToDownload.push(src);
+
         slideImages.push({
-            //TODO: download image
-            downloadURL: $(images[i]).attr('src'),
-            url: '',
-            alt: $(images[i]).attr('alt')
+            url: util.extractName(src),
+            alt: $(images[i]).attr('alt').trim().replace(/\s\s+/g, ' ')
         });
     }
 
@@ -71,44 +110,59 @@ function parseHtml(tour_id, content) {
 
     let contents = $('.BoxContent').find('p');
 
-    detailModel.start_location = $(contents[3]).find('b').innerHTML;
+    detailModel.start_location = $(contents[3]).find('b').text();
+    detailModel.start_date = $(contents[2]).find('b').text();
+    detailModel.dayNum = $(contents[1]).find('b').text().replace(' ngày', '');
 
     //this column will be removed soon.
-    detailModel.tmp_available_seat = $(contents[4]).find('b').innerHTML;
+    detailModel.tmp_available_seat = $(contents[4]).find('b').text();
 
-    //TODO: download list dates
-    detailModel.list_dates_url = $(contents[2]).find('a').href;
+    // TODO: download list dates
+    // detailModel.list_dates_url = $(contents[2]).find('a').href;
 
     // tour detail content
-    let tour_detail = $('.content.tour_detail').find('div');
-    let discount1 = $(tour_detail[2]).find('.price');
-    let discountObj = {
-        itemDrop1: $(discount1[0]).innerHTML,
-        itemDrop2: $(discount1[1]).innerHTML
+    let tour_detail = $('.content.tour_detail');
+    // let discount1 = $(tour_detail[2]).find('.price');
+    // let discountObj = {
+    //     itemDrop1: $(discount1[0]).innerHTML,
+    //     itemDrop2: $(discount1[1]).innerHTML
+    // }
+    //
+    // detailModel.discount1 = discountObj;
+    //
+    // let discount2 = $(tour_detail[3]).find('div');
+    // let discount21 = $(discount2[1]).find('.price');
+    // let discountObj = {
+    //     description: $(discount2[0]).innerHTML,
+    //     itemDrop1: $(discount21[0]).innerHTML,
+    //     itemDrop2: $(discount21[1]).innerHTML
+    // }
+    //
+    // detailModel.discount2 = discountObj;
+    // detailModel.description = $($(tour_detail[0]).children()[2]).text();
+
+    let contentHTML = $('.content');
+    if (contentHTML.length === 9) {
+        let div = $(contentHTML[1]).find('div');
+        detailModel.original_price = $($(div[0]).children()[0]).text();
+        detailModel.current_price = $($(div[1]).children()[0]).text();
+        detailModel.description = $(tour_detail[3]).text();
+    } else if (contentHTML.length === 7) {
+        let div = $('.BoxPrice').find('div');
+        detailModel.current_price = $($(div[0]).children()[0]).text();
     }
 
-    detailModel.discount1 = discountObj;
-
-    let discount2 = $(tour_detail[3]).find('div');
-    let discount21 = $(discount2[1]).find('.price');
-    let discountObj = {
-        description: $(discount2[0]).innerHTML,
-        itemDrop1: $(discount21[0]).innerHTML,
-        itemDrop2: $(discount21[1]).innerHTML
-    }
-
-    detailModel.discount2 = discountObj;
-    detailModel.description = $(tour_detail[4]).innerHTML;
-
-    let servicesHtml = $('.service');
+    let servicesHtml = $('.Service');
     let services = [];
-    for (let i = 0; i < services.length; i++) {
-        //todo: download image
-        let src = $(servicesHtml[i]).find('img').src;
-        let name = $(servicesHtml[i]).innerHTML;
+    for (let i = 0; i < servicesHtml.length; i++) {
+
+        let src = $(servicesHtml[i]).find('img').attr('src');
+        urlsToDownload.push(src);
+
+        let name = $(servicesHtml[i]).text();
         services.push({
-           src: src,
-            name: name
+            src: util.extractName(src),
+            name: name.trim().replace(/\s\s+/g, ' ')
         });
     }
 
@@ -117,35 +171,37 @@ function parseHtml(tour_id, content) {
     //days
     let daysHTML = $('#ChuongTrinhTour').find('li');
     let days = [];
-    for (let i = 0; i < daysHTML.length; i ++) {
+    for (let i = 0; i < daysHTML.length; i++) {
         //remove style
-        let name = $(daysHTML[i]).find('#ngay' + i);
-        name.attr('style', '');
+        let name = $(daysHTML[i]).find('span').text();
 
         let img = $(daysHTML[i]).find('img');
-        let length = img.attr('src').split('/').length;
-        let url = __dirname + '/../public/assets/images/tour/days/' + img.attr('src').split('/')[length - 1];
+        urlsToDownload.push(img.attr('src'));
+
         let image = {
-            //TODO: download image
-            downloadURL: img.attr('src'),
-            url: url,
-            alt: img.attr('alt')
+            url: util.extractName(img.attr('src')),
+            alt: img.attr('alt').trim().replace(/\s\s+/g, ' ')
         };
 
-        //remove all src and href refer to travel.com.vn
-        img.attr('src', url);
-
-        let tag_a = $(daysHTML[i]).find('a');
-        for (let j = 0; j < tag_a.length; j ++) {
-            $(tag_a[j]).attr('href', '#');
-        }
-
         days.push({
-            name: name.html(),
+            name: name,
             image: image,
-            description: $(daysHTML[i]).html()
+            description: $(daysHTML[i]).find('p').text().replace(/\s\s+/g, ' ')
         })
     }
+
+    detailModel.days = days;
+
+    // detail
+    detailModel.detail = $('#ChiTietTour').html();
+
+    //note
+    detailModel.note = $('#ThongTinTour').text().trim().replace(/\s\s+/g, ' ');
+
+    return {
+        detailModel: detailModel,
+        urlToDownload: urlsToDownload
+    };
 }
 
 module.exports = toutDetailImport;

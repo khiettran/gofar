@@ -8,8 +8,12 @@ let connect = require('gulp-connect');
 //     return gulp.src('/server/*.js').pipe(shell('node app.js'))
 // })
 
+gulp.task('start-db', shell.task([
+    'sudo mongod'
+]));
+
 gulp.task('launch', function () {
-    return gulp.src('package.json').pipe(shell('npm start'))
+    return gulp.src('package.json').pipe(shell('npm run data-import'))
 });
 
 // gulp.task('watch', function () {
@@ -26,4 +30,4 @@ gulp.task('launch', function () {
 // });
 
 
-gulp.task('default', ['launch']);
+gulp.task('default', ['start-db','launch']);

@@ -263,7 +263,7 @@
                                     <div class="trip-item" ng-repeat="item in hotTours">
                                         <div class="item-media">
                                             <div class="image-cover">
-                                                <a ng-click="addRecentViewedTour(item)" class="cursor-pointer"><img src="/assets/images/trip/3.jpg" alt=""></a>
+                                                <a ng-click="addRecentViewedTour(item)" class="cursor-pointer"><img src="/assets/images/tour/{{item.img.src}}" alt="item.img.alt"></a>
                                             </div>
                                             <div class="trip-icon">
                                                 <img src="/assets/images/trip.jpg" alt="">
@@ -272,20 +272,20 @@
                                         <div class="item-body">
                                             <div class="item-title">
                                                 <h2>
-                                                    <a ng-click="addRecentViewedTour(item)">{{item.Title}}</a>
+                                                    <a ng-click="addRecentViewedTour(item)" class="title-display">{{item.img.alt}}</a>
                                                 </h2>
                                             </div>
                                             <div class="item-list">
                                                 <ul>
-                                                    <li>{{item.TotalOfPlace}} địa điểm tham quan</li>
-                                                    <li>{{item.TotalOfDate}} ngày<span ng-if="item.TotalOfDate - 1 > 0">, {{item.TotalOfDate - 1}} đêm</span></li>
+                                                    <li><span>Ngày khởi hành: {{item.tour_details[0].start_date}}</span></li>
+                                                    <li><span>{{item.tour_details[0].dayNum}} ngày</span></li>
                                                 </ul>
                                             </div>
                                             <div class="item-footer">
-                                                <div class="item-rate">
-                                                    <span ng-if="item.Rating > 0">{{item.Rating}} tốt</span>
-                                                    <span ng-if="item.Rating == 0" class="text-sm">chưa có đánh giá nào</span>
-                                                </div>
+                                                <!--<div class="item-rate">-->
+                                                    <!--<span ng-if="item.Rating > 0">{{item.Rating}} tốt</span>-->
+                                                    <!--<span ng-if="item.Rating == 0" class="text-sm">chưa có đánh giá nào</span>-->
+                                                <!--</div>-->
                                                 <div class="item-icon">
                                                     <i class="awe-icon awe-icon-gym"></i>
                                                     <i class="awe-icon awe-icon-car"></i>
@@ -298,18 +298,18 @@
                                         <div class="item-price-more">
                                             <div class="price">
                                                 Giá vé dành cho bạn
-                                                <ins>
+                                                <del>
                                                     <span class="amount">
-                                                        <span ng-bind="item.PromotionPrice < item.PriceAdult ? item.PromotionPrice : item.PriceAdult | number"></span> 
-                                                        <span class="money-type">vnđ</span>
-                                                    </span>
-                                                </ins>
-                                                <del ng-if="item.PromotionPrice < item.PriceAdult">
-                                                    <span class="amount">
-                                                        <span ng-bind="item.PriceAdult | number"></span>
+                                                        <span>{{item.tour_details[0].original_price}}</span>
                                                         <span class="money-type">vnđ</span>
                                                     </span>
                                                 </del>
+                                                <ins>
+                                                    <span class="amount">
+                                                        <span>{{item.tour_details[0].current_price}}</span>
+                                                        <span class="money-type">vnđ</span>
+                                                    </span>
+                                                </ins>
                                             </div>
                                             <a ng-click="bookNowClick(item)" class="awe-btn">Đặt ngay</a>
                                         </div>
@@ -322,7 +322,8 @@
                             <md-tab-label>Các tour xem gần đây</md-tab-label>
                             <md-tab-body class="md-padding">
                                 <!-- ITEM -->
-                                <div class="trip-item" ng-repeat="item in recentViewedTours">
+                                <div class="trip-item" ng-repeat="item in []">
+                                <!--<div class="trip-item" ng-repeat="item in recentViewedTours">-->
                                     <div class="item-media">
                                         <div class="image-cover">
                                             <a ng-click="addRecentViewedTour(item)" class="cursor-pointer"><img src="/assets/images/trip/3.jpg" alt=""></a>

@@ -25,11 +25,18 @@ app.use(express.static(__dirname + '/public/'));
 //app.configure('development', function () {
 //    app.use(express.errorHandler());
 //});
+require('routes/tour/tour.route');
+
+app.get('/', function (req, res) {
+    res.sendFile(app.get('path').join(app.get('views'), 'index.html'));
+});
 
 //require('./routes');
-var db = require('./helpers/db');
-require('./routes/home/route.home')(app);
-require('./routes/tour/route.official')(app);
+let db = require('./helpers/db');
+
+
+// require('./routes/home/route.home')(app);
+// require('./routes/tour/route.official')(app);
 
 // Connect to Mongo on start
 db.connect('mongodb://localhost:27017/gofar_db', function (err) {

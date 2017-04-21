@@ -32,6 +32,7 @@ app.get('/', function (req, res) {
 // require('./tour-import')();
 
 const td = require('./tour-detail-import');
+// require('test');
 
 // Connect to Mongo on start
 db.connect('mongodb://localhost:27017/gofar-db', function (err) {
@@ -41,7 +42,7 @@ db.connect('mongodb://localhost:27017/gofar-db', function (err) {
     } else {
         console.log('connected to mongo db');
 
-        td()
+        td();
 
         var server = http.createServer(app);
         // reload(server, app, true);
